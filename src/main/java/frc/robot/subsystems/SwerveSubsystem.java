@@ -5,12 +5,15 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Filesystem;
+import frc.robot.Constants;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 import java.io.File;
 import java.io.IOException;
+import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -37,14 +40,16 @@ public class SwerveSubsystem extends SubsystemBase
      *
      * @return a command
      */
-    public Command exampleMethodCommand()
+    public Command driveCommand (DoubleSupplier translationX, DoubleSupplier translationY, DoubleSupplier angularRotationX)
     {
-        // Inline construction of command goes here.
-        // Subsystem::RunOnce implicitly requires `this` subsystem.
-        return runOnce(
-                () -> {
-                    /* one-time action goes here */
-                });
+        return run(() -> {
+            // Make the robot move
+            swerveDrive.drive(new Translation2d(translationX.getAsDouble() * Constants.getMaxVelocity,
+                            translationY.getAsDouble() * Constants.getMaxVelocity),
+                    angularRotationX.getAsDouble() * Constants.getMaxAngularVelocity,
+                    true,
+                    false);
+        });
     }
 
 

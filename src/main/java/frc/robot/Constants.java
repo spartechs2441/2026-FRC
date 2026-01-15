@@ -15,6 +15,8 @@ package frc.robot;
  */
 public final class Constants
 {
+    public static double getMaxVelocity = 4;
+    public static double getMaxAngularVelocity = 4;
     public static class OperatorConstants
     {
         public static final int DRIVER_CONTROLLER_PORT = 0;
