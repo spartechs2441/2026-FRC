@@ -5,14 +5,17 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.SwerveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
+import edu.wpi.first.wpilibj.Filesystem;
+import java.io.File;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,21 +26,29 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer
 {
     // The robot's subsystems and commands are defined here...
-    private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
-    
+    private final SwerveSubsystem swerveSub;
+    private final IntakeSubsystem intakeSub;
+    private final ShooterSubsystem shooterSub;
+
+
+    // driver controller
+    XboxController driverController;
     // Replace with CommandPS4Controller or CommandJoystick if needed
-    private final CommandXboxController driverController =
-            new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
-    
-    
+
+
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer()
     {
+        swerveSub = new SwerveSubsystem();
+        intakeSub = new IntakeSubsystem();
+        shooterSub = new ShooterSubsystem();
+
+        driverController = new XboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
         // Configure the trigger bindings
         configureBindings();
     }
-    
-    
+
+
     /**
      * Use this method to define your trigger->command mappings. Triggers can be created via the
      * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
@@ -50,15 +61,15 @@ public class RobotContainer
     private void configureBindings()
     {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        new Trigger(swerveSubsystem::exampleCondition)
-                .onTrue(new ExampleCommand(swerveSubsystem));
-        
+        new Trigger(swerveSub::exampleCondition)
+                .onTrue(new ExampleCommand(swerveSub));
+
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.
-        driverController.b().whileTrue(swerveSubsystem.exampleMethodCommand());
+
     }
-    
-    
+
+
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
@@ -67,6 +78,6 @@ public class RobotContainer
     public Command getAutonomousCommand()
     {
         // An example command will be run in autonomous
-        return Autos.exampleAuto(swerveSubsystem);
+        return Autos.exampleAuto(swerveSub);
     }
 }
