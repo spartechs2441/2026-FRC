@@ -24,7 +24,7 @@ public final class Constants {
     public static double getMaxAngularVelocity = 4;
     public static final int TemperoryID = 0;
     public static final int TemperoryVoltage = 1;
-
+    public static final double maxSpeed = Units.feetToMeters(4.5);
 
 
     public static final class OIConstants {

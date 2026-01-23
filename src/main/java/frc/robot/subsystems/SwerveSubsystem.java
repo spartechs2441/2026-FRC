@@ -5,30 +5,35 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.util.Units;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Filesystem;
 import frc.robot.Constants;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 import java.io.File;
-import java.io.IOException;
 import java.util.function.DoubleSupplier;
+import java.util.function.Supplier;
+
+import static edu.wpi.first.units.Units.Meter;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SwerveSubsystem extends SubsystemBase
-{
+public class SwerveSubsystem extends SubsystemBase {
+
+    File directory = new File(Filesystem.getDeployDirectory(), "swerve");
     SwerveDrive swerveDrive;
-    /** Creates a new ExampleSubsystem. */
-    public SwerveSubsystem (File directory) {
 
-        double maximumSpeed = Units.feetToMeters(4.5);
-        File swerveJsonDirectory = new File(Filesystem.getDeployDirectory(),"swerve");
-
+    /**
+     * Creates a new ExampleSubsystem.
+     */
+    public SwerveSubsystem() {
         try {
-            swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumSpeed);
+            Pose2d pose = new Pose2d(new Translation2d(Meter.of(1), Meter.of(4)), Rotation2d.fromDegrees(0));
+            swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.maxSpeed, pose);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -40,8 +45,7 @@ public class SwerveSubsystem extends SubsystemBase
      *
      * @return a command
      */
-    public Command driveCommand (DoubleSupplier translationX, DoubleSupplier translationY, DoubleSupplier angularRotationX)
-    {
+    public Command driveCommand(DoubleSupplier translationX, DoubleSupplier translationY, DoubleSupplier angularRotationX) {
         return run(() -> {
             // Make the robot move
             swerveDrive.drive(new Translation2d(translationX.getAsDouble() * Constants.getMaxVelocity,
@@ -58,23 +62,34 @@ public class SwerveSubsystem extends SubsystemBase
      *
      * @return value of some boolean subsystem state, such as a digital sensor.
      */
-    public boolean exampleCondition()
-    {
+    public boolean exampleCondition() {
         // Query some boolean state, such as a digital sensor.
         return false;
     }
 
 
     @Override
-    public void periodic()
-    {
+    public void periodic() {
         // This method will be called once per scheduler run
     }
 
 
     @Override
-    public void simulationPeriodic()
-    {
+    public void simulationPeriodic() {
         // This method will be called once per scheduler run during simulation
+    }
+
+    public SwerveDrive getSwerveDrive() {
+        return swerveDrive;
+    }
+
+    public void driveFieldOriented(ChassisSpeeds velocity) {
+        swerveDrive.driveFieldOriented(velocity);
+    }
+
+    public Command driveFieldOriented(Supplier<ChassisSpeeds> velocity) {
+        return run(() -> {
+            swerveDrive.driveFieldOriented(velocity.get());
+        });
     }
 }
