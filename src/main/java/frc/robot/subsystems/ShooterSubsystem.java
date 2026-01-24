@@ -13,21 +13,20 @@ import frc.robot.Constants;
 import java.beans.Encoder;
 
 public class ShooterSubsystem extends SubsystemBase {
-    private final SparkMax shooterMotorController = new SparkMax(Constants.TemperoryID, SparkLowLevel.MotorType.kBrushless);
-    private final AbsoluteEncoder shooterEncoder;
+    private final SparkMax shooterMotorController = new SparkMax(Constants.ShooterConstants.shooterMotorControllerID, SparkLowLevel.MotorType.kBrushless);
 
     public ShooterSubsystem () {
-        this.shooterEncoder = shooterMotorController.getAbsoluteEncoder();
+        RelativeEncoder shooterEncoder = shooterMotorController.getEncoder();
     }
 
 
 
     public void flywheelIn() {
-        shooterMotorController.setVoltage(Constants.TemperoryVoltage);
+        shooterMotorController.setVoltage(Constants.ShooterConstants.shooterMotorControllerVoltage);
     }
 
     public void flywheelOut() {
-        shooterMotorController.setVoltage(-Constants.TemperoryVoltage);
+        shooterMotorController.setVoltage(-Constants.ShooterConstants.shooterMotorControllerVoltageReverse);
     }
 
     public void flywheelStop() {
