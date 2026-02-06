@@ -31,7 +31,7 @@ public class RobotContainer {
     XboxController driverController = new XboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
     // Replace with CommandPS4Controller or CommandJoystick if needed
     SwerveInputStream driveAngularVelocity = SwerveInputStream.of(swerveSub.getSwerveDrive(),
-                    () -> driverController.getLeftX() * -1,
+                    () -> driverController.getLeftX() * 1,
                     () -> driverController.getLeftY() * -1
             ) // Axis which give the desired translational angle and speed.
             .withControllerRotationAxis(driverController::getRightX) // Axis which give the desired angular velocity.

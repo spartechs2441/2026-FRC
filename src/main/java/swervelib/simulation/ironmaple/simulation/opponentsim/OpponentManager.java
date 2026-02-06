@@ -1,6 +1,6 @@
 package swervelib.simulation.ironmaple.simulation.opponentsim;
 
-//import com.pathplanner.lib.commands.PathfindingCommand;
+import com.pathplanner.lib.commands.PathfindingCommand;
 import edu.wpi.first.math.Pair;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -82,7 +82,7 @@ public class OpponentManager {
      * @return this, for chaining.
      */
     public OpponentManager withDefaults() {
-    //  CommandScheduler.getInstance().schedule(PathfindingCommand.warmupCommand());
+      CommandScheduler.getInstance().schedule(PathfindingCommand.warmupCommand());
         this
                 .withDefaultInitialPoses()
                 .withDefaultQueeningPoses();
