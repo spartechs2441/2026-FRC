@@ -6,7 +6,7 @@
   },
   "angle": {
     "type": "sparkmax_neo550",
-    "id": 43,
+    "id": 43  ,
     "canbus": null
   },
   "encoder": {
@@ -19,7 +19,7 @@
     "angle": false
   },
   "absoluteEncoderInverted": true,
-  "absoluteEncoderOffset": 159,
+  "absoluteEncoderOffset": 111,
   "location": {
     "front": 12,
     "left": -12
