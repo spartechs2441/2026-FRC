@@ -33,7 +33,7 @@ public class RobotContainer {
 
     private Vector2 rotation() {
         Vector2 direction = new Vector2(driverController.getLeftX(), -driverController.getLeftY());
-
+        direction.rotate(Rotation.rotation270());
         return direction;
     }
     // driver controller
@@ -45,7 +45,7 @@ public class RobotContainer {
                     () -> rotation().y
             ) // Axis which give the desired translational angle and speed.
             .withControllerRotationAxis(
-                    () -> driverController.getRightTriggerAxis() - driverController.getLeftTriggerAxis()
+                    () -> driverController.getLeftTriggerAxis() - driverController.getRightTriggerAxis()
             ) // Axis which give the desired angular velocity.
             .deadband(0.01)                  // Controller deadband
             .scaleTranslation(0.8)           // Scaled controller translation axis
