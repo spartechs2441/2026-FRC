@@ -5,17 +5,22 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.Filesystem;
 import frc.robot.Constants;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 import java.io.File;
+import java.util.Arrays;
 import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static edu.wpi.first.units.Units.Meter;
 
@@ -27,6 +32,7 @@ public class SwerveSubsystem extends SubsystemBase {
     File directory = new File(Filesystem.getDeployDirectory(), "swerve/maxSwerve");
     SwerveDrive swerveDrive;
 
+    // SwerveDriveOdometry odometer = new SwerveDriveOdometry(new SwerveDriveKinematics, new Rotation2d(0));
     /**
      * Creates a new ExampleSubsystem.
      */
@@ -38,6 +44,8 @@ public class SwerveSubsystem extends SubsystemBase {
             throw new RuntimeException(e);
         }
     }
+
+
 
 
     /**
@@ -70,6 +78,12 @@ public class SwerveSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+
+       // System.out.println(Arrays.stream(swerveDrive.kinematics.getModules()).map(Translation2d::toString).toList());
+        // for it in swerveDrive.getModules():
+        for (var it : swerveDrive.getModules()) {
+            System.out.println(it.getAbsoluteEncoder().getAbsolutePosition());
+        }
         // This method will be called once per scheduler run
     }
 
