@@ -30,16 +30,19 @@ public class ExampleCommand extends Command
     
     
     // Called when the command is initially scheduled.
+    // Run once at beginning
     @Override
     public void initialize() {}
     
     
     // Called every time the scheduler runs while the command is scheduled.
+    // Sort of a loop
     @Override
     public void execute() {}
     
     
     // Called once the command ends or is interrupted.
+    // Happens at the end
     @Override
     public void end(boolean interrupted) {}
     

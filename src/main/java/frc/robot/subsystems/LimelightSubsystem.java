@@ -32,6 +32,8 @@ public class LimelightSubsystem extends SubsystemBase {
 
     public Command limeAuto(NetworkTableEntry tx, NetworkTableEntry ty) {
         return run(() -> {
+
+
             // MAKE EQUATION FOR LIMELIGHT AUTO
             /*
             YOU WILL NEED TO HAVE A DEADBAND SO THAT CAN CORRECT YOUR POSITION
