@@ -35,7 +35,7 @@ public class ClimbDownCommand extends Command
     public void initialize() {
         subsystem.WinchStop();
     }
-    
+
 
     // Called every time the scheduler runs while the command is scheduled.
     // Sort of a loop

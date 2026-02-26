@@ -29,21 +29,56 @@ public class LimelightSubsystem extends SubsystemBase {
         txnc = limelight.getEntry("txnc"); // Angle on the april tag
     }
 
+double limelight_aim_proportional () {
 
-    public Command limeAuto(NetworkTableEntry tx, NetworkTableEntry ty) {
+    double kP = .035;
+
+    // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of
+    // your limelight 3 feed, tx should return roughly 31 degrees.
+    double targetingAngularVelocity = tx.getDouble(0) * kP;
+
+    // convert to radians per second for our drive method
+    targetingAngularVelocity *= Constants.getMaxAngularVelocity;
+
+    //invert since tx is positive when the target is to the right of the crosshair
+    return targetingAngularVelocity;
+}
+
+double limelight_range_proportional()
+    {
+        double kP = .1;
+        double targetingForwardSpeed = ty.getDouble(0) * kP;
+        targetingForwardSpeed *= Constants.getMaxVelocity;
+        return targetingForwardSpeed;
+    }
+
+
+    double limelight_domain_proportional()
+    {
+        double kP = .1;
+        double targetingForwardSpeed = tx.getDouble(0) * kP;
+        targetingForwardSpeed *= Constants.getMaxVelocity;
+        return targetingForwardSpeed;
+    }
+
+
+    public Command limeAuto(NetworkTableEntry tx, NetworkTableEntry ty, NetworkTableEntry txnc) {
         return run(() -> {
 
 
-            // MAKE EQUATION FOR LIMELIGHT AUTO
-            /*
-            YOU WILL NEED TO HAVE A DEADBAND SO THAT CAN CORRECT YOUR POSITION
 
-            (1 - (Current dist/desired dist)) * speed = ouptut speed
-            also need a speed cap
-             */
-            swerveSub.swerveDrive.drive(new Translation2d(translationX.getAsDouble() * Constants.getMaxVelocity,
-                            translationY.getAsDouble() * Constants.getMaxVelocity),
-                    angularRotationX.getAsDouble() * Constants.getMaxAngularVelocity,
+            double xSpeed = limelight_domain_proportional(); // get tx speed and apply deadband with if statements, then multiply with constant max speed
+
+            double ySpeed = limelight_range_proportional();
+
+            if (xSpeed > 0.02 && ySpeed > 0.02) {
+                    swerveSub.swerveDrive.drive(new Translation2d(-xSpeed, -ySpeed));
+                }
+            else if (xSpeed < 0.02 && ySpeed < 0.02)
+
+            swerveSub.swerveDrive.drive(new Translation2d(tx.getDouble(0) * Constants.getMaxVelocity,
+                            ty.getDouble(0 * Constants.getMaxVelocity,
+                    txnc.getDouble(0) * Constants.getMaxAngularVelocity),
                     true,
                     false);
         });
