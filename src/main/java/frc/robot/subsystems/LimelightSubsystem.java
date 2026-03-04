@@ -102,5 +102,7 @@ double limelight_range_proportional()
 
  */
 
-        })
+        });
+    }
+}
 

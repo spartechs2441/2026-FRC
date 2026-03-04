@@ -22,11 +22,11 @@ public class IntakeSubsystem extends SubsystemBase {
         hinge.setVoltage(0);
     }
 
-    public void rollerDown() {
+    public void rollerOut() {
         roller.setVoltage(-Constants.IntakeConstants.rollerVoltageReverse);
     }
 
-    public void rollerUp() {
+    public void rollerIn() {
         roller.setVoltage(Constants.IntakeConstants.rollerVoltage);
     }
 

@@ -8,12 +8,14 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
+import java.beans.Encoder;
+
 /** An example command that uses an example subsystem. */
 public class ClimbUpCommand extends Command
 {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final ClimbSubsystem subsystem;
-
+    private Encoder encoder;
 
     /**
      * Creates a new ExampleCommand.
@@ -33,7 +35,7 @@ public class ClimbUpCommand extends Command
     // Run once at beginning
     @Override
     public void initialize() {
-        subsystem.WinchDown();
+
 
     }
     
@@ -50,7 +52,6 @@ public class ClimbUpCommand extends Command
     // Happens at the end
     @Override
     public void end(boolean interrupted) {
-        subsystem.WinchStop();
 
     }
     

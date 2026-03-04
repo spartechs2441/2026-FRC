@@ -9,12 +9,11 @@ import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 import org.dyn4j.geometry.Rotation;
 import org.dyn4j.geometry.Vector2;
 import swervelib.SwerveInputStream;
@@ -30,6 +29,9 @@ public class RobotContainer {
     private final SwerveSubsystem swerveSub = new SwerveSubsystem();
     private final IntakeSubsystem intakeSub = new IntakeSubsystem();
     private final ShooterSubsystem shooterSub = new ShooterSubsystem();
+    private final IndexerSubsystem indexSub = new IndexerSubsystem();
+    private final ClimbSubsystem climbSub = new ClimbSubsystem();
+
 
     private Vector2 rotation() {
         Vector2 direction = new Vector2(driverController.getLeftX(), -driverController.getLeftY());
@@ -69,7 +71,18 @@ public class RobotContainer {
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.
 
+        new JoystickButton(driverController,Constants.XboxControllerButtons.IndexerLoad).onTrue(new IndexerLoad(indexSub)).onFalse(new IndexerStop(indexSub));
+        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakeIn).onTrue(new IntakeIn(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakeOut).onTrue(new IntakerOut(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakerDeploy).onTrue(new IntakerDeploy(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
+        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakerRetract).onTrue(new IntakerRetract(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
+        new JoystickButton(driverController,Constants.XboxControllerButtons.ShooterShoot).onTrue(new ShooterShoot(shooterSub)).onFalse(new ShooterStop(shooterSub));
+
+        new POVButton(driverController,Constants.XboxControllerButtons.IndexerOut).onTrue(new IndexerUnload(indexSub)).onFalse(new IndexerStop(indexSub));
+        new POVButton(driverController,Constants.XboxControllerButtons.Climbdown).onTrue(new ClimbUpCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));
+        new POVButton(driverController,Constants.XboxControllerButtons.ClimbUp).onTrue(new ClimbDownCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));;
     }
+
 
 
     /**

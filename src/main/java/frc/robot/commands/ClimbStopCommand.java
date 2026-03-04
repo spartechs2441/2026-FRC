@@ -5,17 +5,14 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class ClimbDownCommand extends Command
+public class ClimbStopCommand extends Command
 {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final ClimbSubsystem subsystem;
-    private DigitalInput Switch;
-
 
 
     /**
@@ -23,36 +20,36 @@ public class ClimbDownCommand extends Command
      *
      * @param subsystem The subsystem used by this command.
      */
-    public ClimbDownCommand(ClimbSubsystem subsystem)
+    public ClimbStopCommand(ClimbSubsystem subsystem)
     {
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
-        Switch = new DigitalInput(0);
+
     }
-
-
+    
+    
     // Called when the command is initially scheduled.
     // Run once at beginning
     @Override
     public void initialize() {
 
+
     }
-
-
+    
+    
     // Called every time the scheduler runs while the command is scheduled.
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.WinchDown();
+        subsystem.WinchUp();
     }
-
-
+    
+    
     // Called once the command ends or is interrupted.
     // Happens at the end
     @Override
     public void end(boolean interrupted) {
-
 
     }
     
@@ -61,6 +58,6 @@ public class ClimbDownCommand extends Command
     @Override
     public boolean isFinished()
     {
-        return Switch.get();
+        return false;
     }
 }
