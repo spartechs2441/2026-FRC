@@ -5,9 +5,12 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -31,7 +34,7 @@ public class RobotContainer {
     private final ShooterSubsystem shooterSub = new ShooterSubsystem();
     private final IndexerSubsystem indexSub = new IndexerSubsystem();
     private final ClimbSubsystem climbSub = new ClimbSubsystem();
-
+    private final SendableChooser<Command> autoChooser;
 
     private Vector2 rotation() {
         Vector2 direction = new Vector2(driverController.getLeftX(), -driverController.getLeftY());
@@ -59,6 +62,10 @@ public class RobotContainer {
      */
     public RobotContainer() {
         // Configure the trigger bindings
+
+        autoChooser = AutoBuilder.buildAutoChooser();
+        SmartDashboard.putData("Auto Chooser", autoChooser);
+
         configureBindings();
         swerveSub.setDefaultCommand(driveFieldOrientedAngularVelocity);
     }
@@ -92,7 +99,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An example command will be run in autonomous
-        return Autos.exampleAuto(swerveSub);
+        return autoChooser.getSelected();
     }
 
 

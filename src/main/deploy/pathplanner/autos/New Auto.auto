@@ -7,7 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "New Path"
+            "pathName": "Center to left"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ClimbUp"
           }
         }
       ]
