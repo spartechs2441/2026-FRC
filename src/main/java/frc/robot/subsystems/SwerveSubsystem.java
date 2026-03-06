@@ -6,32 +6,27 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
-import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
+
 import java.io.File;
-import java.util.Arrays;
 import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 import static edu.wpi.first.units.Units.Meter;
-
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SwerveSubsystem extends SubsystemBase {
 
@@ -43,6 +38,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
 
     // SwerveDriveOdometry odometer = new SwerveDriveOdometry(new SwerveDriveKinematics, new Rotation2d(0));
+
     /**
      * Creates a new ExampleSubsystem.
      */
@@ -92,11 +88,21 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
 
-    public Pose2d getPose() { return swerveDrive.getPose(); }
-    public void resetPose(Pose2d pose) { swerveDrive.resetOdometry(pose); }
-    public ChassisSpeeds getRobotRelativeSpeeds() { return swerveDrive.getRobotVelocity(); }
-    public void driveRobotRelative(ChassisSpeeds speeds) { swerveDrive.setChassisSpeeds(speeds);/* ... set module states ... */ }
+    public Pose2d getPose() {
+        return swerveDrive.getPose();
+    }
 
+    public void resetPose(Pose2d pose) {
+        swerveDrive.resetOdometry(pose);
+    }
+
+    public ChassisSpeeds getRobotRelativeSpeeds() {
+        return swerveDrive.getRobotVelocity();
+    }
+
+    public void driveRobotRelative(ChassisSpeeds speeds) {
+        swerveDrive.setChassisSpeeds(speeds);/* ... set module states ... */
+    }
 
 
     /**
@@ -130,7 +136,7 @@ public class SwerveSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
 
-       // System.out.println(Arrays.stream(swerveDrive.kinematics.getModules()).map(Translation2d::toString).toList());
+        // System.out.println(Arrays.stream(swerveDrive.kinematics.getModules()).map(Translation2d::toString).toList());
         // for it in swerveDrive.getModules():
         for (var it : swerveDrive.getModules()) {
             System.out.println(it.getAbsoluteEncoder().getAbsolutePosition());

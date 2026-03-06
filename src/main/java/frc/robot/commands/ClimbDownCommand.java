@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
-/** An example command that uses an example subsystem. */
-public class ClimbDownCommand extends Command
-{
+/**
+ * An example command that uses an example subsystem.
+ */
+public class ClimbDownCommand extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final ClimbSubsystem subsystem;
     private DigitalInput Switch;
-
 
 
     /**
@@ -23,8 +23,7 @@ public class ClimbDownCommand extends Command
      *
      * @param subsystem The subsystem used by this command.
      */
-    public ClimbDownCommand(ClimbSubsystem subsystem)
-    {
+    public ClimbDownCommand(ClimbSubsystem subsystem) {
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
@@ -55,12 +54,11 @@ public class ClimbDownCommand extends Command
 
 
     }
-    
-    
+
+
     // Returns true when the command should end.
     @Override
-    public boolean isFinished()
-    {
+    public boolean isFinished() {
         return Switch.get();
     }
 }

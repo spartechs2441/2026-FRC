@@ -11,14 +11,14 @@ public class ClimbSubsystem extends SubsystemBase {
     private final RelativeEncoder ClimbEncoder = Winch.getEncoder();
 
     public void WinchUp() {
-        if(ClimbEncoder.getPosition() < Constants.ClimbConstants.RelativeEncoder){
+        if (ClimbEncoder.getPosition() < Constants.ClimbConstants.RelativeEncoder) {
             Winch.setVoltage(Constants.ClimbConstants.leftWinchVoltage);
             Winch.set(Constants.ClimbConstants.leftWinchSpeed);
-        }
-        else{
+        } else {
             WinchStop();
         }
     }
+
     public void WinchDown() {
         Winch.setVoltage(-Constants.ClimbConstants.leftWinchVoltage);
         Winch.set(-Constants.ClimbConstants.leftWinchSpeed);
@@ -28,9 +28,6 @@ public class ClimbSubsystem extends SubsystemBase {
         Winch.setVoltage(0);
 
     }
-
-
-
 
 
 }

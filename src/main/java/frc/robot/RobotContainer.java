@@ -6,8 +6,6 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import edu.wpi.first.math.Vector;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,12 +33,6 @@ public class RobotContainer {
     private final IndexerSubsystem indexSub = new IndexerSubsystem();
     private final ClimbSubsystem climbSub = new ClimbSubsystem();
     private final SendableChooser<Command> autoChooser;
-
-    private Vector2 rotation() {
-        Vector2 direction = new Vector2(driverController.getLeftX(), -driverController.getLeftY());
-        direction.rotate(Rotation.rotation270());
-        return direction;
-    }
     // driver controller
     XboxController driverController = new XboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
     // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -55,8 +47,8 @@ public class RobotContainer {
             .deadband(0.01)                  // Controller deadband
             .scaleTranslation(0.8)           // Scaled controller translation axis
             .allianceRelativeControl(true);  // Alliance relative controls.
-
     Command driveFieldOrientedAngularVelocity = swerveSub.driveFieldOriented(driveAngularVelocity);
+
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -70,6 +62,12 @@ public class RobotContainer {
         swerveSub.setDefaultCommand(driveFieldOrientedAngularVelocity);
     }
 
+    private Vector2 rotation() {
+        Vector2 direction = new Vector2(driverController.getLeftX(), -driverController.getLeftY());
+        direction.rotate(Rotation.rotation270());
+        return direction;
+    }
+
     private void configureBindings() {
         // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
         new Trigger(swerveSub::exampleCondition)
@@ -78,18 +76,18 @@ public class RobotContainer {
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.
 
-        new JoystickButton(driverController,Constants.XboxControllerButtons.IndexerLoad).onTrue(new IndexerLoad(indexSub)).onFalse(new IndexerStop(indexSub));
-        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakeIn).onTrue(new IntakeIn(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakeOut).onTrue(new IntakerOut(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakerDeploy).onTrue(new IntakerDeploy(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(driverController,Constants.XboxControllerButtons.IntakerRetract).onTrue(new IntakerRetract(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(driverController,Constants.XboxControllerButtons.ShooterShoot).onTrue(new ShooterShoot(shooterSub)).onFalse(new ShooterStop(shooterSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad).onTrue(new IndexerLoad(indexSub)).onFalse(new IndexerStop(indexSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeIn).onTrue(new IntakeIn(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeOut).onTrue(new IntakerOut(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerDeploy).onTrue(new IntakerDeploy(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract).onTrue(new IntakerRetract(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.ShooterShoot).onTrue(new ShooterShoot(shooterSub)).onFalse(new ShooterStop(shooterSub));
 
-        new POVButton(driverController,Constants.XboxControllerButtons.IndexerOut).onTrue(new IndexerUnload(indexSub)).onFalse(new IndexerStop(indexSub));
-        new POVButton(driverController,Constants.XboxControllerButtons.Climbdown).onTrue(new ClimbUpCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));
-        new POVButton(driverController,Constants.XboxControllerButtons.ClimbUp).onTrue(new ClimbDownCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));;
+        new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut).onTrue(new IndexerUnload(indexSub)).onFalse(new IndexerStop(indexSub));
+        new POVButton(driverController, Constants.XboxControllerButtons.Climbdown).onTrue(new ClimbUpCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));
+        new POVButton(driverController, Constants.XboxControllerButtons.ClimbUp).onTrue(new ClimbDownCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));
+        ;
     }
-
 
 
     /**

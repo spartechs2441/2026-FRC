@@ -1,15 +1,11 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
-import java.util.function.DoubleSupplier;
 
 public class LimelightSubsystem extends SubsystemBase {
     NetworkTable limelight;
@@ -19,7 +15,7 @@ public class LimelightSubsystem extends SubsystemBase {
     private final NetworkTableEntry ty;
     private final NetworkTableEntry ta;
     private final NetworkTableEntry tv;
-    
+
     public LimelightSubsystem(NetworkTable limeLight) {
         limelight = limeLight;
         swerveSub = new SwerveSubsystem();
@@ -30,24 +26,23 @@ public class LimelightSubsystem extends SubsystemBase {
         txnc = limelight.getEntry("txnc"); // Angle on the april tag
     }
 
-double limelight_angle_proportional () {
+    double limelight_angle_proportional() {
 
-    double kP = .035;
+        double kP = .035;
 
-    // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of
-    // your limelight 3 feed, tx should return roughly 31 degrees.
+        // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of
+        // your limelight 3 feed, tx should return roughly 31 degrees.
 
-    double targetingAngularVelocity = tx.getDouble(0) * kP;
+        double targetingAngularVelocity = tx.getDouble(0) * kP;
 
-    // convert to radians per second for our drive method
-    targetingAngularVelocity *= Constants.getMaxAngularVelocity;
+        // convert to radians per second for our drive method
+        targetingAngularVelocity *= Constants.getMaxAngularVelocity;
 
-    //invert since tx is positive when the target is to the right of the crosshair
-    return targetingAngularVelocity;
-}
+        //invert since tx is positive when the target is to the right of the crosshair
+        return targetingAngularVelocity;
+    }
 
-double limelight_range_proportional()
-    {
+    double limelight_range_proportional() {
         double kP = .1;
         double targetingForwardSpeed = ta.getDouble(0) * kP;
         targetingForwardSpeed *= Constants.getMaxVelocity;
@@ -55,8 +50,7 @@ double limelight_range_proportional()
     }
 
 
-    double limelight_domain_proportional()
-    {
+    double limelight_domain_proportional() {
         double kP = .1;
         double area = ta.getDouble(0);
         double targetingSidewaysAngle = tx.getDouble(0);
@@ -87,11 +81,9 @@ double limelight_range_proportional()
                 swerveSub.swerveDrive.drive(new ChassisSpeeds(0, 0, -rot));
 
 
-
             } else if (area < target && xCenter > 0) {
                 swerveSub.swerveDrive.drive(new ChassisSpeeds(forwardSpeed, sidewaysSpeed, 0));
-            }
-            else if (area >= target && xCenter <= 0){
+            } else if (area >= target && xCenter <= 0) {
                 swerveSub.swerveDrive.drive(new ChassisSpeeds(-forwardSpeed, sidewaysSpeed, 0));
             }
 

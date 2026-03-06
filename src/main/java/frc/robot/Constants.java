@@ -5,12 +5,8 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -36,13 +32,14 @@ public final class Constants {
         public static final int xMovement = XboxController.Axis.kLeftY.value;
         public static final int rotation = XboxController.Axis.kRightX.value;
     }
+
     public static final class IndexerConstants {
         public static final double LoaderVoltage = 0;
         public static final double LoaderVoltageReverse = 0;
         public static final int LoaderID = 20;
     }
 
-    public static final class IntakeConstants{
+    public static final class IntakeConstants {
 
         public static final double hingeVoltage = 0;
         public static final double hingeVoltageReverse = 0;
@@ -78,16 +75,17 @@ public final class Constants {
         public static final double rightWinchVoltageReverse = 0;
         public static final int rightWinchID = 26;
     }
+
     public static final class XboxControllerButtons {
-        public static  final int ShooterShoot = XboxController.Button.kB.value;
-        public static  final int IntakerDeploy = XboxController.Button.kY.value;
-        public static  final int IntakerRetract = XboxController.Button.kA.value;
-        public static  final int IntakeIn = XboxController.Button.kX.value;
-        public static  final int IntakeOut = XboxController.Button.kLeftBumper.value;
-        public static  final int IndexerLoad = XboxController.Button.kRightBumper.value;
-        public static  final int IndexerOut = 90;
-        public static  final int ClimbUp = 0;
-        public static  final int Climbdown = 180;
+        public static final int ShooterShoot = XboxController.Button.kB.value;
+        public static final int IntakerDeploy = XboxController.Button.kY.value;
+        public static final int IntakerRetract = XboxController.Button.kA.value;
+        public static final int IntakeIn = XboxController.Button.kX.value;
+        public static final int IntakeOut = XboxController.Button.kLeftBumper.value;
+        public static final int IndexerLoad = XboxController.Button.kRightBumper.value;
+        public static final int IndexerOut = 90;
+        public static final int ClimbUp = 0;
+        public static final int Climbdown = 180;
     }
 }
 

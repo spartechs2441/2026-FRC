@@ -9,10 +9,9 @@ import frc.robot.Constants;
 public class ShooterSubsystem extends SubsystemBase {
     private final SparkMax shooterMotorController = new SparkMax(Constants.ShooterConstants.shooterMotorControllerID, SparkLowLevel.MotorType.kBrushless);
 
-    public ShooterSubsystem () {
+    public ShooterSubsystem() {
         RelativeEncoder shooterEncoder = shooterMotorController.getEncoder();
     }
-
 
 
     public void flywheelIn() {
