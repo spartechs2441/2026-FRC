@@ -34,15 +34,13 @@ public class ClimbStopCommand extends Command {
     @Override
     public void initialize() {
 
-
     }
-
 
     // Called every time the scheduler runs while the command is scheduled.
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.WinchUp();
+        subsystem.winchUp();
     }
 
 

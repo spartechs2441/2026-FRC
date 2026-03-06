@@ -29,12 +29,8 @@ import java.util.function.Supplier;
 import static edu.wpi.first.units.Units.Meter;
 
 public class SwerveSubsystem extends SubsystemBase {
-
-    File directory = new File(Filesystem.getDeployDirectory(), "swerve/maxSwerve");
-    SwerveDrive swerveDrive;
-
-    Pigeon2 gyro;
-    RobotConfig config;
+     public SwerveDrive swerveDrive;
+     public RobotConfig config;
 
 
     // SwerveDriveOdometry odometer = new SwerveDriveOdometry(new SwerveDriveKinematics, new Rotation2d(0));
@@ -43,11 +39,11 @@ public class SwerveSubsystem extends SubsystemBase {
      * Creates a new ExampleSubsystem.
      */
     public SwerveSubsystem() {
-
-        gyro = new Pigeon2(0);
+        Pigeon2 gyro = new Pigeon2(0);
 
         try {
             Pose2d pose = new Pose2d(new Translation2d(Meter.of(1), Meter.of(4)), Rotation2d.fromDegrees(0));
+            File directory = new File(Filesystem.getDeployDirectory(), "swerve/maxSwerve");
             swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.maxSpeed, pose);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -140,14 +136,7 @@ public class SwerveSubsystem extends SubsystemBase {
         // for it in swerveDrive.getModules():
         for (var it : swerveDrive.getModules()) {
             System.out.println(it.getAbsoluteEncoder().getAbsolutePosition());
-        }
-        // This method will be called once per scheduler run
-    }
-
-
-    @Override
-    public void simulationPeriodic() {
-        // This method will be called once per scheduler run during simulation
+        } // This method will be called once per scheduler run
     }
 
     public SwerveDrive getSwerveDrive() {

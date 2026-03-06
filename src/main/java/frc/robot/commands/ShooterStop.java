@@ -15,7 +15,6 @@ public class ShooterStop extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final ShooterSubsystem subsystem;
 
-
     /**
      * Creates a new ExampleCommand.
      *
@@ -25,7 +24,6 @@ public class ShooterStop extends Command {
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
-
     }
 
 
@@ -41,7 +39,7 @@ public class ShooterStop extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.ShooterStop();
+        subsystem.shooterStop();
     }
 
 

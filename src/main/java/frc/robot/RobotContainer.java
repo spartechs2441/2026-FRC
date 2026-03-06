@@ -76,17 +76,34 @@ public class RobotContainer {
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.
 
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad).onTrue(new IndexerLoad(indexSub)).onFalse(new IndexerStop(indexSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeIn).onTrue(new IntakeIn(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeOut).onTrue(new IntakerOut(intakeSub)).onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerDeploy).onTrue(new IntakerDeploy(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract).onTrue(new IntakerRetract(intakeSub)).onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.ShooterShoot).onTrue(new ShooterShoot(shooterSub)).onFalse(new ShooterStop(shooterSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad)
+                .onTrue(new IndexerLoad(indexSub))
+                .onFalse(new IndexerStop(indexSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeIn)
+                .onTrue(new IntakeIn(intakeSub))
+                .onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeOut)
+                .onTrue(new IntakerOut(intakeSub))
+                .onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerDeploy)
+                .onTrue(new IntakerDeploy(intakeSub))
+                .onFalse(new IntakerHingeStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract)
+                .onTrue(new IntakerRetract(intakeSub))
+                .onFalse(new IntakerHingeStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.ShooterShoot)
+                .onTrue(new ShooterShoot(shooterSub))
+                .onFalse(new ShooterStop(shooterSub));
 
-        new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut).onTrue(new IndexerUnload(indexSub)).onFalse(new IndexerStop(indexSub));
-        new POVButton(driverController, Constants.XboxControllerButtons.Climbdown).onTrue(new ClimbUpCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));
-        new POVButton(driverController, Constants.XboxControllerButtons.ClimbUp).onTrue(new ClimbDownCommand(climbSub)).onFalse(new ClimbStopCommand(climbSub));
-        ;
+        new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
+                .onTrue(new IndexerUnload(indexSub))
+                .onFalse(new IndexerStop(indexSub));
+        new POVButton(driverController, Constants.XboxControllerButtons.Climbdown)
+                .onTrue(new ClimbUpCommand(climbSub))
+                .onFalse(new ClimbStopCommand(climbSub));
+        new POVButton(driverController, Constants.XboxControllerButtons.ClimbUp)
+                .onTrue(new ClimbDownCommand(climbSub))
+                .onFalse(new ClimbStopCommand(climbSub));
     }
 
 

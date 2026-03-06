@@ -19,7 +19,5 @@ public class StorageSubsystem extends SubsystemBase {
     public void conveyorStop() {
         conveyor.setVoltage(0);
     }
-
-
 }
 

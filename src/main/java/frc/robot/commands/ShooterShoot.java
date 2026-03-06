@@ -41,7 +41,7 @@ public class ShooterShoot extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.ShooterShoot();
+        subsystem.shooterShoot();
     }
 
 

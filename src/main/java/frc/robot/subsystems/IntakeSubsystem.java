@@ -9,7 +9,6 @@ public class IntakeSubsystem extends SubsystemBase {
     private final SparkMax hinge = new SparkMax(Constants.IntakeConstants.hingeID, SparkLowLevel.MotorType.kBrushless);
     private final SparkMax roller = new SparkMax(Constants.IntakeConstants.rollerID, SparkLowLevel.MotorType.kBrushless);
 
-
     public void hingeDown() {
         hinge.setVoltage(-Constants.IntakeConstants.hingeVoltageReverse);
     }

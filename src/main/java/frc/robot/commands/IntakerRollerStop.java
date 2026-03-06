@@ -15,7 +15,6 @@ public class IntakerRollerStop extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final IntakeSubsystem subsystem;
 
-
     /**
      * Creates a new ExampleCommand.
      *

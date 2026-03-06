@@ -19,7 +19,5 @@ public class IndexerSubsystem extends SubsystemBase {
     public void louderStop() {
         loader.setVoltage(0);
     }
-
-
 }
 

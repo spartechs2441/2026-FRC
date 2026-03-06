@@ -44,7 +44,7 @@ public class ClimbUpCommand extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.WinchUp();
+        subsystem.winchUp();
     }
 
 

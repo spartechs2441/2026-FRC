@@ -10,16 +10,15 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 
 public final class Autos {
+    private Autos() {
+        throw new UnsupportedOperationException("This is a utility class!");
+    }
+
     /**
      * Example static factory for an autonomous command.
      */
     public static Command exampleAuto(SwerveSubsystem subsystem) {
         // return Commands.sequence(new (subsystem));
         return null;
-    }
-
-
-    private Autos() {
-        throw new UnsupportedOperationException("This is a utility class!");
     }
 }

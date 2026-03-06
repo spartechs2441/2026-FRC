@@ -15,7 +15,7 @@ import frc.robot.subsystems.ClimbSubsystem;
 public class ClimbDownCommand extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final ClimbSubsystem subsystem;
-    private DigitalInput Switch;
+    private final DigitalInput digitalSwitch;
 
 
     /**
@@ -27,7 +27,7 @@ public class ClimbDownCommand extends Command {
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
-        Switch = new DigitalInput(0);
+        digitalSwitch = new DigitalInput(0);
     }
 
 
@@ -43,7 +43,7 @@ public class ClimbDownCommand extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.WinchDown();
+        subsystem.winchDown();
     }
 
 
@@ -59,6 +59,6 @@ public class ClimbDownCommand extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return Switch.get();
+        return digitalSwitch.get();
     }
 }

@@ -22,11 +22,9 @@ public class IntakerOut extends Command {
      * @param subsystem The subsystem used by this command.
      */
     public IntakerOut(IntakeSubsystem subsystem) {
-
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
-
     }
 
 

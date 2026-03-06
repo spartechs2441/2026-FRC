@@ -7,28 +7,26 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ClimbSubsystem extends SubsystemBase {
-    private final SparkMax Winch = new SparkMax(Constants.StorageConstants.conveyorID, SparkLowLevel.MotorType.kBrushless);
-    private final RelativeEncoder ClimbEncoder = Winch.getEncoder();
+    private final SparkMax winch = new SparkMax(Constants.StorageConstants.conveyorID, SparkLowLevel.MotorType.kBrushless);
+    private final RelativeEncoder climbEncoder = winch.getEncoder();
 
-    public void WinchUp() {
-        if (ClimbEncoder.getPosition() < Constants.ClimbConstants.RelativeEncoder) {
-            Winch.setVoltage(Constants.ClimbConstants.leftWinchVoltage);
-            Winch.set(Constants.ClimbConstants.leftWinchSpeed);
+    public void winchUp() {
+        if (climbEncoder.getPosition() < Constants.ClimbConstants.RelativeEncoder) {
+            winch.setVoltage(Constants.ClimbConstants.leftWinchVoltage);
+            winch.set(Constants.ClimbConstants.leftWinchSpeed);
         } else {
-            WinchStop();
+            winchStop();
         }
     }
 
-    public void WinchDown() {
-        Winch.setVoltage(-Constants.ClimbConstants.leftWinchVoltage);
-        Winch.set(-Constants.ClimbConstants.leftWinchSpeed);
+    public void winchDown() {
+        winch.setVoltage(-Constants.ClimbConstants.leftWinchVoltage);
+        winch.set(-Constants.ClimbConstants.leftWinchSpeed);
     }
 
-    public void WinchStop() {
-        Winch.setVoltage(0);
+    public void winchStop() {
+        winch.setVoltage(0);
 
     }
-
-
 }
 

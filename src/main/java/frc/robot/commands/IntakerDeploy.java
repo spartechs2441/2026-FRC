@@ -22,13 +22,10 @@ public class IntakerDeploy extends Command {
      * @param subsystem The subsystem used by this command.
      */
     public IntakerDeploy(IntakeSubsystem subsystem) {
-
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
-
     }
-
 
     // Called when the command is initially scheduled.
     @Override
