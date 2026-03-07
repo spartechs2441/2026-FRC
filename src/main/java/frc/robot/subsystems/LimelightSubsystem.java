@@ -73,8 +73,6 @@ public class LimelightSubsystem extends SubsystemBase {
 
     }
 
-    Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
-
 
     public Command limeAuto(NetworkTableEntry tx, NetworkTableEntry ta, NetworkTableEntry txnc, double target, double rottarget, double xCenter) {
         return run(() -> {
