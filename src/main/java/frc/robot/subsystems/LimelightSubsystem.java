@@ -1,11 +1,13 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 
 public class LimelightSubsystem extends SubsystemBase {
     NetworkTable limelight;
@@ -24,6 +26,7 @@ public class LimelightSubsystem extends SubsystemBase {
         ty = limelight.getEntry("ty"); //displacement on y axis
         tv = limelight.getEntry("tv"); //0 or 1 depending on if there is a reflective object
         txnc = limelight.getEntry("txnc"); // Angle on the april tag
+
     }
 
     double limelight_angle_proportional() {
@@ -61,6 +64,16 @@ public class LimelightSubsystem extends SubsystemBase {
         targetingSidewaysSpeed *= Constants.getMaxVelocity;
         return targetingSidewaysSpeed;
     }
+
+    public Pose2d startPosition (){
+
+       final Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
+       System.out.println(startPos);
+       return startPos;
+
+    }
+
+    Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
 
 
     public Command limeAuto(NetworkTableEntry tx, NetworkTableEntry ta, NetworkTableEntry txnc, double target, double rottarget, double xCenter) {

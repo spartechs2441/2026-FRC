@@ -6,6 +6,7 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,6 +34,7 @@ public class RobotContainer {
     private final IndexerSubsystem indexSub = new IndexerSubsystem();
     private final ClimbSubsystem climbSub = new ClimbSubsystem();
     private final SendableChooser<Command> autoChooser;
+
     // driver controller
     XboxController driverController = new XboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
     // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -57,6 +59,9 @@ public class RobotContainer {
 
         autoChooser = AutoBuilder.buildAutoChooser();
         SmartDashboard.putData("Auto Chooser", autoChooser);
+
+        NamedCommands.registerCommand("ClimbDown", new ClimbDownCommand(climbSub));
+        NamedCommands.registerCommand("ClimbUp", new ClimbUpCommand(climbSub));
 
         configureBindings();
         swerveSub.setDefaultCommand(driveFieldOrientedAngularVelocity);

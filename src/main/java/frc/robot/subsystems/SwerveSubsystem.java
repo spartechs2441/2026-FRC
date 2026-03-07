@@ -31,6 +31,7 @@ import static edu.wpi.first.units.Units.Meter;
 public class SwerveSubsystem extends SubsystemBase {
      public SwerveDrive swerveDrive;
      public RobotConfig config;
+     public LimelightSubsystem limelightsub;
 
 
     // SwerveDriveOdometry odometer = new SwerveDriveOdometry(new SwerveDriveKinematics, new Rotation2d(0));
@@ -85,7 +86,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
 
     public Pose2d getPose() {
-        return swerveDrive.getPose();
+        return limelightsub.startPosition();
     }
 
     public void resetPose(Pose2d pose) {
