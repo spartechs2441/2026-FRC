@@ -11,6 +11,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "To the Upright"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "ClimbUp"

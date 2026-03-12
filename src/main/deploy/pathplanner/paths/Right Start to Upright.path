@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8506720822242877,
-        "y": 1.9303644466312444
+        "x": 2.9038229756181537,
+        "y": 1.7196491697913492
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.0458245614035087,
-        "y": 3.18369298245614
+        "x": 1.07,
+        "y": 2.491
       },
       "prevControl": {
-        "x": 1.6206463678812275,
-        "y": 2.810635229554966
+        "x": 1.4090141786858288,
+        "y": 2.3546118522187887
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,7 +45,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Climb (blue)",
+  "folder": "Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0

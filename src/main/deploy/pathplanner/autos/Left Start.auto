@@ -11,6 +11,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "To the Upright from left start"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "ClimbUp"

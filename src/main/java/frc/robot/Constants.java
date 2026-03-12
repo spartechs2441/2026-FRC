@@ -36,39 +36,39 @@ public final class Constants {
     public static final class IndexerConstants {
         public static final double LoaderVoltage = 0;
         public static final double LoaderVoltageReverse = 0;
-        public static final int LoaderID = 20;
+        public static final int LoaderID = 21;
     }
 
     public static final class IntakeConstants {
 
         public static final double hingeVoltage = 0;
         public static final double hingeVoltageReverse = 0;
-        public static final int hingeID = 21;
+        public static final int hingeID = 13;
 
         public static final double rollerVoltage = 0;
         public static final double rollerVoltageReverse = 0;
-        public static final int rollerID = 22;
+        public static final int rollerID = 20;
 
     }
 
     public static final class ShooterConstants {
         public static final double shooterMotorControllerVoltage = 0;
         public static final double shooterMotorControllerVoltageReverse = 0;
-        public static final int shooterMotorControllerID = 23;
+        public static final int shooterMotorControllerID = 8;
         public static final double shooterSpeed = 0.65;
     }
 
     public static final class StorageConstants {
         public static final double conveyorVoltage = 0;
         public static final double conveyorVoltageReverse = 0;
-        public static final int conveyorID = 24;
+        public static final int conveyorID = 7;
     }
 
     public static final class ClimbConstants {
         public static final double leftWinchVoltage = 0;
         public static final double leftWinchSpeed = 0;
         public static final double leftWinchVoltageReverse = 0;
-        public static final int leftWinchID = 25;
+        public static final int leftWinchID = 12;
         public static final int RelativeEncoder = 0;
         public static final double rightWinchVoltage = 0;
         public static final double rightWinchSpeed = 0;
