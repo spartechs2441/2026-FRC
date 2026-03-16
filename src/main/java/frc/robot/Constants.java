@@ -26,6 +26,7 @@ public final class Constants {
     public static final class OIConstants {
 
         public static final int DRIVER_CONTROLLER_PORT = 0;
+        public static final int FLIGHT_CONTROLLER_PORT = 1;
 
         //Controller Controls
         public static final int yMovement = XboxController.Axis.kLeftX.value; //The X and Y Movement are switched
@@ -34,19 +35,19 @@ public final class Constants {
     }
 
     public static final class IndexerConstants {
-        public static final double LoaderVoltage = 0;
-        public static final double LoaderVoltageReverse = 0;
+        public static final double LoaderVoltage = 2;
+        public static final double LoaderVoltageReverse = -2;
         public static final int LoaderID = 21;
     }
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = 0;
-        public static final double hingeVoltageReverse = 0;
+        public static final double hingeVoltage = -2;
+        public static final double hingeVoltageReverse = -2;
         public static final int hingeID = 13;
 
-        public static final double rollerVoltage = 0;
-        public static final double rollerVoltageReverse = 0;
+        public static final double rollerVoltage = 2;
+        public static final double rollerVoltageReverse = 2;
         public static final int rollerID = 20;
 
     }
@@ -59,14 +60,14 @@ public final class Constants {
     }
 
     public static final class StorageConstants {
-        public static final double conveyorVoltage = 0;
-        public static final double conveyorVoltageReverse = 0;
+        public static final double conveyorVoltage = 2;
+        public static final double conveyorVoltageReverse = 2;
         public static final int conveyorID = 7;
     }
 
     public static final class ClimbConstants {
-        public static final double leftWinchVoltage = 0;
-        public static final double leftWinchSpeed = 0;
+        public static final double leftWinchVoltage = 2;
+        public static final double leftWinchSpeed = 2;
         public static final double leftWinchVoltageReverse = 0;
         public static final int leftWinchID = 12;
         public static final int RelativeEncoder = 0;
@@ -77,15 +78,27 @@ public final class Constants {
     }
 
     public static final class XboxControllerButtons {
+        //Key bindings haven't assigned yet
         public static final int ShooterShoot = XboxController.Button.kB.value;
-        public static final int IntakerDeploy = XboxController.Button.kY.value;
-        public static final int IntakerRetract = XboxController.Button.kA.value;
-        public static final int IntakeIn = XboxController.Button.kX.value;
-        public static final int IntakeOut = XboxController.Button.kLeftBumper.value;
-        public static final int IndexerLoad = XboxController.Button.kRightBumper.value;
+
+        public static final int IndexerLoad = XboxController.Button.kY.value;
         public static final int IndexerOut = 90;
-        public static final int ClimbUp = 0;
-        public static final int Climbdown = 180;
+
+        //Slurp, driver 2
+//        public static final int IntakeOut = XboxController.Button.kA.value;
+//        public static final int IntakeIn = XboxController.Button.kX.value;
+        public static final int IntakerRetract = XboxController.Button.kLeftBumper.value;
+        public static final int IntakerDeploy = XboxController.Button.kRightBumper.value;
+    }
+
+    public static final class FlightControllerButtons {
+        public static final int IntakeIn = 3;
+        public static final int IntakeOut = 5;
+        public static final int ConveyorIn = 2;
+        public static final int ShooterMacro = 1;
+        public static final int ClimbUp = 6;
+        public static final int Climbdown = 4;
+
     }
 }
 

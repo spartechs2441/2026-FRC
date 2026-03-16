@@ -6,25 +6,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.StorageSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ClimbStopCommand extends Command {
+public class ShootingMacro extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final ClimbSubsystem subsystem;
+    private final ShooterSubsystem shooterSub;
+    private final IndexerSubsystem indexerSub;
 
-
-    /**
-     * Creates a new ExampleCommand.
-     *
-     * @param subsystem The subsystem used by this command.
-     */
-    public ClimbStopCommand(ClimbSubsystem subsystem) {
-        this.subsystem = subsystem;
+    public ShootingMacro(ShooterSubsystem ShooterSub, IndexerSubsystem IndexerSub) {
+        this.shooterSub = ShooterSub;
+//        this.storageSub = StorageSub;
+        this.indexerSub = IndexerSub;
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(subsystem);
+        addRequirements(shooterSub,indexerSub);
 
     }
 
@@ -36,11 +35,13 @@ public class ClimbStopCommand extends Command {
 
     }
 
+
     // Called every time the scheduler runs while the command is scheduled.
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.winchStop();
+        indexerSub.louderIn();
+        shooterSub.shooterShoot();
     }
 
 

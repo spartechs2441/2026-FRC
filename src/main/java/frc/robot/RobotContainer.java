@@ -7,6 +7,7 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,10 +34,12 @@ public class RobotContainer {
     private final ShooterSubsystem shooterSub = new ShooterSubsystem();
     private final IndexerSubsystem indexSub = new IndexerSubsystem();
     private final ClimbSubsystem climbSub = new ClimbSubsystem();
+    private final StorageSubsystem conveyorSub = new StorageSubsystem();
     private final SendableChooser<Command> autoChooser;
 
     // driver controller
     XboxController driverController = new XboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
+    Joystick flightController = new Joystick(Constants.OIConstants.FLIGHT_CONTROLLER_PORT);
     // Replace with CommandPS4Controller or CommandJoystick if needed
     SwerveInputStream driveAngularVelocity = SwerveInputStream.of(
                     swerveSub.getSwerveDrive(),
@@ -62,6 +65,7 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("ClimbDown", new ClimbDownCommand(climbSub));
         NamedCommands.registerCommand("ClimbUp", new ClimbUpCommand(climbSub));
+        System.out.println("Finished registering named commands");
 
         configureBindings();
         swerveSub.setDefaultCommand(driveFieldOrientedAngularVelocity);
@@ -84,31 +88,36 @@ public class RobotContainer {
         new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad)
                 .onTrue(new IndexerLoad(indexSub))
                 .onFalse(new IndexerStop(indexSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeIn)
-                .onTrue(new IntakeIn(intakeSub))
-                .onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeOut)
-                .onTrue(new IntakerOut(intakeSub))
-                .onFalse(new IntakerRollerStop(intakeSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerDeploy)
                 .onTrue(new IntakerDeploy(intakeSub))
                 .onFalse(new IntakerHingeStop(intakeSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract)
                 .onTrue(new IntakerRetract(intakeSub))
                 .onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.ShooterShoot)
-                .onTrue(new ShooterShoot(shooterSub))
-                .onFalse(new ShooterStop(shooterSub));
-
+        new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterMacro)
+                .onTrue(new ShootingMacro(shooterSub,indexSub))
+                .onFalse(new ShootingMacroStop(shooterSub,indexSub));
         new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
                 .onTrue(new IndexerUnload(indexSub))
                 .onFalse(new IndexerStop(indexSub));
-        new POVButton(driverController, Constants.XboxControllerButtons.Climbdown)
-                .onTrue(new ClimbUpCommand(climbSub))
-                .onFalse(new ClimbStopCommand(climbSub));
-        new POVButton(driverController, Constants.XboxControllerButtons.ClimbUp)
+
+
+
+        new JoystickButton (flightController, Constants.FlightControllerButtons.IntakeIn)
+                .onTrue(new IntakeIn(intakeSub))
+                .onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.IntakeOut)
+                .onTrue(new IntakerOut(intakeSub))
+                .onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.Climbdown)
                 .onTrue(new ClimbDownCommand(climbSub))
                 .onFalse(new ClimbStopCommand(climbSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.ClimbUp)
+                .onTrue(new ClimbUpCommand(climbSub))
+                .onFalse(new ClimbStopCommand(climbSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorIn)
+                .onTrue(new ConveyorInCommand(conveyorSub))
+                .onFalse(new ConveyorStopCommand(conveyorSub));
     }
 
 

@@ -6,14 +6,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.StorageSubsystem;
+import frc.robot.subsystems.SwerveSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ClimbStopCommand extends Command {
+public class ConveyorInCommand extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final ClimbSubsystem subsystem;
+    private final StorageSubsystem subsystem;
 
 
     /**
@@ -21,7 +22,7 @@ public class ClimbStopCommand extends Command {
      *
      * @param subsystem The subsystem used by this command.
      */
-    public ClimbStopCommand(ClimbSubsystem subsystem) {
+    public ConveyorInCommand(StorageSubsystem subsystem) {
         this.subsystem = subsystem;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(subsystem);
@@ -33,14 +34,14 @@ public class ClimbStopCommand extends Command {
     // Run once at beginning
     @Override
     public void initialize() {
-
     }
+
 
     // Called every time the scheduler runs while the command is scheduled.
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.winchStop();
+        subsystem.conveyorBackward();
     }
 
 
@@ -48,7 +49,6 @@ public class ClimbStopCommand extends Command {
     // Happens at the end
     @Override
     public void end(boolean interrupted) {
-
     }
 
 

@@ -135,9 +135,9 @@ public class SwerveSubsystem extends SubsystemBase {
 
         // System.out.println(Arrays.stream(swerveDrive.kinematics.getModules()).map(Translation2d::toString).toList());
         // for it in swerveDrive.getModules():
-        for (var it : swerveDrive.getModules()) {
-            System.out.println(it.getAbsoluteEncoder().getAbsolutePosition());
-        } // This method will be called once per scheduler run
+//        for (var it : swerveDrive.getModules()) {
+//            System.out.println(it.getAbsoluteEncoder().getAbsolutePosition());
+//        } // This method will be called once per scheduler run
     }
 
     public SwerveDrive getSwerveDrive() {
