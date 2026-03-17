@@ -64,7 +64,6 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Chooser", autoChooser);
 
         NamedCommands.registerCommand("ClimbDown", new ClimbDownCommand(climbSub));
-        NamedCommands.registerCommand("ClimbUp", new ClimbUpCommand(climbSub));
         System.out.println("Finished registering named commands");
 
         configureBindings();

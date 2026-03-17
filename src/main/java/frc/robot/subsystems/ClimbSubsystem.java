@@ -37,7 +37,6 @@ public class ClimbSubsystem extends SubsystemBase {
 
     public void winchStop() {
         winch.setVoltage(0);
-
     }
 }
 
