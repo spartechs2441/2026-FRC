@@ -35,18 +35,18 @@ public final class Constants {
     }
 
     public static final class IndexerConstants {
-        public static final double LoaderVoltage = 2;
-        public static final double LoaderVoltageReverse = -2;
+        public static final double LoaderVoltage = -2;
+        public static final double LoaderVoltageReverse = 2;
         public static final int LoaderID = 21;
     }
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = -2;
-        public static final double hingeVoltageReverse = -2;
+        public static final double hingeVoltage = -1;
+        public static final double hingeVoltageReverse = 1;
         public static final int hingeID = 13;
 
-        public static final double rollerVoltage = 2;
+        public static final double rollerVoltage = -2;
         public static final double rollerVoltageReverse = 2;
         public static final int rollerID = 20;
 
