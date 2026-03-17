@@ -13,13 +13,8 @@ public class ShooterSubsystem extends SubsystemBase {
         RelativeEncoder shooterEncoder = shooterMotorController.getEncoder();
     }
 
-    public void flywheelIn() {
-        shooterMotorController.setVoltage(Constants.ShooterConstants.shooterMotorControllerVoltage);
-    }
-
-    public void shooterShoot() {
-        shooterMotorController.setVoltage(-Constants.ShooterConstants.shooterMotorControllerVoltageReverse);
-        shooterMotorController.set(Constants.ShooterConstants.shooterSpeed);
+    public void flywheelOut() {
+        shooterMotorController.setVoltage(Constants.ShooterConstants.shooterVoltage);
     }
 
     public void shooterStop() {

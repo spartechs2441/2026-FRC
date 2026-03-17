@@ -93,9 +93,6 @@ public class RobotContainer {
         new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract)
                 .onTrue(new IntakerRetract(intakeSub))
                 .onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterMacro)
-                .onTrue(new ShootingMacro(shooterSub,indexSub))
-                .onFalse(new ShootingMacroStop(shooterSub,indexSub));
         new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
                 .onTrue(new IndexerUnload(indexSub))
                 .onFalse(new IndexerStop(indexSub));
@@ -114,9 +111,12 @@ public class RobotContainer {
         new JoystickButton(flightController, Constants.FlightControllerButtons.ClimbUp)
                 .onTrue(new ClimbUpCommand(climbSub))
                 .onFalse(new ClimbStopCommand(climbSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorIn)
-                .onTrue(new ConveyorInCommand(conveyorSub))
-                .onFalse(new ConveyorStopCommand(conveyorSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorInMacro)
+                .onTrue(new ConveyorMacroInCommand(conveyorSub, indexSub))
+                .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
+                .onTrue(new ShooterShoot(shooterSub))
+                .onFalse(new ShooterStop(shooterSub));
     }
 
 

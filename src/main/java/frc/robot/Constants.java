@@ -21,17 +21,9 @@ public final class Constants {
     public static double getMaxAngularVelocity = 4;
     public static final double maxSpeed = Units.feetToMeters(4.5);
 
-    // All the TBD constants have been set to 0
-
     public static final class OIConstants {
-
         public static final int DRIVER_CONTROLLER_PORT = 0;
         public static final int FLIGHT_CONTROLLER_PORT = 1;
-
-        //Controller Controls
-        public static final int yMovement = XboxController.Axis.kLeftX.value; //The X and Y Movement are switched
-        public static final int xMovement = XboxController.Axis.kLeftY.value;
-        public static final int rotation = XboxController.Axis.kRightX.value;
     }
 
     public static final class IndexerConstants {
@@ -53,10 +45,9 @@ public final class Constants {
     }
 
     public static final class ShooterConstants {
-        public static final double shooterMotorControllerVoltage = 0;
-        public static final double shooterMotorControllerVoltageReverse = 0;
+        public static final double shooterVoltage = 5;
+        public static final double shooterVoltageReverse = -5;
         public static final int shooterMotorControllerID = 8;
-        public static final double shooterSpeed = 0.65;
     }
 
     public static final class StorageConstants {
@@ -94,8 +85,8 @@ public final class Constants {
     public static final class FlightControllerButtons {
         public static final int IntakeIn = 3;
         public static final int IntakeOut = 5;
-        public static final int ConveyorIn = 2;
-        public static final int ShooterMacro = 1;
+        public static final int ConveyorInMacro = 1;
+        public static final int ShooterShoot = 2;
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
 

@@ -7,23 +7,21 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IndexerSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ShootingMacroStop extends Command {
+public class ConveyorMacroInCommand extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final ShooterSubsystem shooterSub;
-    private final IndexerSubsystem indexerSub;
+    private final StorageSubsystem storage;
+    private final IndexerSubsystem indexer;
 
-    public ShootingMacroStop(ShooterSubsystem ShooterSub, IndexerSubsystem IndexerSub) {
-        this.shooterSub = ShooterSub;
-        this.indexerSub = IndexerSub;
+    public ConveyorMacroInCommand(StorageSubsystem storageSub, IndexerSubsystem indexerSub) {
+        this.storage = storageSub;
+        this.indexer = indexerSub;
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(shooterSub,indexerSub);
-
+        addRequirements(storageSub, indexerSub);
     }
 
 
@@ -31,7 +29,6 @@ public class ShootingMacroStop extends Command {
     // Run once at beginning
     @Override
     public void initialize() {
-
     }
 
 
@@ -39,16 +36,14 @@ public class ShootingMacroStop extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        indexerSub.louderStop();
-        shooterSub.shooterStop();
+        storage.conveyorBackward();
+        indexer.loaderIn();
     }
-
 
     // Called once the command ends or is interrupted.
     // Happens at the end
     @Override
     public void end(boolean interrupted) {
-
     }
 
 

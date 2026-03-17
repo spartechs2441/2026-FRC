@@ -6,15 +6,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
-import frc.robot.subsystems.SwerveSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ConveyorInCommand extends Command {
+public class ConveyorMacroStopCommand extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final StorageSubsystem subsystem;
+    private final IndexerSubsystem indexerSub;
 
 
     /**
@@ -22,10 +23,11 @@ public class ConveyorInCommand extends Command {
      *
      * @param subsystem The subsystem used by this command.
      */
-    public ConveyorInCommand(StorageSubsystem subsystem) {
+    public ConveyorMacroStopCommand(StorageSubsystem subsystem, IndexerSubsystem indexerSub) {
         this.subsystem = subsystem;
+        this.indexerSub = indexerSub;
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(subsystem);
+        addRequirements(subsystem, indexerSub);
 
     }
 
@@ -41,7 +43,8 @@ public class ConveyorInCommand extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.conveyorBackward();
+        subsystem.conveyorStop();
+        indexerSub.loaderStop();
     }
 
 

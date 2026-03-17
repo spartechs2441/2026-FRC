@@ -8,15 +8,15 @@ import frc.robot.Constants;
 public class IndexerSubsystem extends SubsystemBase {
     private final SparkMax loader = new SparkMax(Constants.IndexerConstants.LoaderID, SparkLowLevel.MotorType.kBrushless);
 
-    public void louderIn() {
+    public void loaderIn() {
         loader.setVoltage(Constants.IndexerConstants.LoaderVoltage);
     }
 
-    public void louderOut() {
+    public void loaderOut() {
         loader.setVoltage(Constants.IndexerConstants.LoaderVoltageReverse);
     }
 
-    public void louderStop() {
+    public void loaderStop() {
         loader.setVoltage(0);
     }
 }
