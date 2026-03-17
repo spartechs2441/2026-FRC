@@ -5,7 +5,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ClimbSubsystem;
 
@@ -56,6 +55,6 @@ public class ClimbDownCommand extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return subsystem.getLimitSwitch();
+        return false;
     }
 }
