@@ -1,0 +1,59 @@
+// Copyright (c) FIRST and other WPILib contributors.
+
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.commands;
+
+import edu.wpi.first.hal.HAL;
+import edu.wpi.first.hal.HALUtil;
+import edu.wpi.first.hal.HALValue;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.ClimbSubsystem;
+
+/**
+ * An example command that uses an example subsystem.
+ */
+public class AutoClimbDownCommand extends Command {
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+    private final ClimbSubsystem subsystem;
+    private long start;
+
+    /**
+     * Creates a new ExampleCommand.
+     *
+     * @param subsystem The subsystem used by this command.
+     */
+    public AutoClimbDownCommand(ClimbSubsystem subsystem) {
+        this.subsystem = subsystem;
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(subsystem);
+    }
+
+
+    // Called when the command is initially scheduled.
+    // Run once at beginning
+    @Override
+    public void initialize() {
+        start = System.currentTimeMillis();
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    // Sort of a loop
+    @Override
+    public void execute() {
+        subsystem.winchDown();
+    }
+
+
+    // Called once the command ends or is interrupted.
+    // Happens at the end
+    @Override
+    public void end(boolean interrupted) { }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return System.currentTimeMillis() + 1000 > start;
+    }
+}

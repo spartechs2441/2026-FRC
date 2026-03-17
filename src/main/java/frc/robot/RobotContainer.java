@@ -63,7 +63,7 @@ public class RobotContainer {
         autoChooser = AutoBuilder.buildAutoChooser();
         SmartDashboard.putData("Auto Chooser", autoChooser);
 
-        NamedCommands.registerCommand("ClimbDown", new ClimbDownCommand(climbSub));
+        NamedCommands.registerCommand("ClimbDown", new AutoClimbDownCommand(climbSub));
         System.out.println("Finished registering named commands");
 
         configureBindings();
@@ -116,7 +116,7 @@ public class RobotContainer {
                 .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
                 .onTrue(new ShooterShoot(shooterSub))
-                .onFalse(new ShooterStop(shooterSub));
+                .onFalse(new ShooterShoot(shooterSub));
     }
 
 
