@@ -116,7 +116,7 @@ public class RobotContainer {
                 .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
                 .onTrue(new ShooterShoot(shooterSub))
-                .onFalse(new ShooterShoot(shooterSub));
+                .onFalse(new ShooterStop(shooterSub));
     }
 
 

@@ -34,7 +34,7 @@ public final class Constants {
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = -1;
+        public static final double hingeVoltage = -1.5;
         public static final double hingeVoltageReverse = 1;
         public static final int hingeID = 13;
 
@@ -85,8 +85,8 @@ public final class Constants {
     public static final class FlightControllerButtons {
         public static final int IntakeIn = 3;
         public static final int IntakeOut = 5;
-        public static final int ConveyorInMacro = 1;
-        public static final int ShooterShoot = 2;
+        public static final int ConveyorInMacro = 2;
+        public static final int ShooterShoot = 1;
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
 
