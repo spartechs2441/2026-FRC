@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 
@@ -31,8 +32,6 @@ import static edu.wpi.first.units.Units.Meter;
 public class SwerveSubsystem extends SubsystemBase {
      public SwerveDrive swerveDrive;
      public RobotConfig config;
-     public LimelightSubsystem limelightsub;
-
 
     // SwerveDriveOdometry odometer = new SwerveDriveOdometry(new SwerveDriveKinematics, new Rotation2d(0));
 
@@ -86,7 +85,9 @@ public class SwerveSubsystem extends SubsystemBase {
 
 
     public Pose2d getPose() {
-        return limelightsub.startPosition();
+        final Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
+        System.out.println(startPos);
+        return startPos;
     }
 
     public void resetPose(Pose2d pose) {
