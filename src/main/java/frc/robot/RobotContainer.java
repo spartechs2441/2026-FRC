@@ -49,6 +49,7 @@ public class RobotContainer {
             .withControllerRotationAxis(
                     () -> driverController.getLeftTriggerAxis() - driverController.getRightTriggerAxis()
             ) // Axis which give the desired angular velocity.
+
             .deadband(0.01)                  // Controller deadband
             .scaleTranslation(0.8)           // Scaled controller translation axis
             .allianceRelativeControl(true);  // Alliance relative controls.
@@ -119,8 +120,13 @@ public class RobotContainer {
         new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
                 .onTrue(new ShooterShoot(shooterSub))
                 .onFalse(new ShooterStop(shooterSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.reversedIndexer)
+                .onTrue(new IndexerUnload(indexSub))
+                .onFalse(new IndexerStop(indexSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.AlignMacro)
                 .onTrue(new AlignCommand(swerveSub));
+
+
     }
 
 
