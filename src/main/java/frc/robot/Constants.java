@@ -89,6 +89,7 @@ public final class Constants {
         public static final int ShooterShoot = 1;
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
+        public static final int AlignMacro = 11;
 
     }
 }

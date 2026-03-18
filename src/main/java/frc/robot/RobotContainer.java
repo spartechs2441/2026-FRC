@@ -117,6 +117,8 @@ public class RobotContainer {
         new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
                 .onTrue(new ShooterShoot(shooterSub))
                 .onFalse(new ShooterStop(shooterSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.AlignMacro)
+                .onTrue(new AlignCommand(swerveSub));
     }
 
 
