@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.XboxController;
 public final class Constants {
     public static double getMaxVelocity = 4;
     public static double getMaxAngularVelocity = 4;
-    public static final double maxSpeed = Units.feetToMeters(2.5);
+    public static final double maxSpeed = Units.feetToMeters(4.5);
 
     public static final class OIConstants {
         public static final int DRIVER_CONTROLLER_PORT = 0;
@@ -34,18 +34,18 @@ public final class Constants {
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = -1.5;
+        public static final double hingeVoltage = -1;
         public static final double hingeVoltageReverse = 1.5;
         public static final int hingeID = 13;
 
-        public static final double rollerVoltage = -3;
-        public static final double rollerVoltageReverse = 3;
+        public static final double rollerVoltage = -2;
+        public static final double rollerVoltageReverse = 2;
         public static final int rollerID = 20;
 
     }
 
     public static final class ShooterConstants {
-        public static final double shooterVoltage = 8;
+        public static final double shooterVoltage = 5;
         public static final double shooterVoltageReverse = -5;
         public static final int shooterMotorControllerID = 8;
     }
@@ -90,7 +90,7 @@ public final class Constants {
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
         public static final int AlignMacro = 11;
-        public static final int reversedIndexer = 9;
+
     }
 }
 

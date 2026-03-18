@@ -10,10 +10,16 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import edu.wpi.first.math.Nat;
+import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.estimator.PoseEstimator;
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.numbers.N5;
+import edu.wpi.first.math.numbers.N7;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -22,6 +28,7 @@ import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
+
 
 import java.io.File;
 import java.util.function.DoubleSupplier;
@@ -39,7 +46,7 @@ public class SwerveSubsystem extends SubsystemBase {
      * Creates a new ExampleSubsystem.
      */
     public SwerveSubsystem() {
-        Pigeon2 gyro = new Pigeon2(0);
+
 
         try {
             Pose2d pose = new Pose2d(new Translation2d(Meter.of(1), Meter.of(4)), Rotation2d.fromDegrees(0));
@@ -56,6 +63,17 @@ public class SwerveSubsystem extends SubsystemBase {
             // Handle exception as needed
             e.printStackTrace();
         }
+        poseEstimator = new SwerveDrivePoseEstimator(
+                swerveDrive.kinematics,
+
+                swerveDrive.getGyro().getRawRotation3d().toRotation2d(),
+                swerveDrive.getModulePositions(),
+                new Pose2d(),
+                // State standard deviations (x, y, theta)
+                VecBuilder.fill(0.1, 0.1, 0.1),
+                // Vision measurement standard deviations
+                VecBuilder.fill(0.9, 0.9, 0.9)
+        );
     }
 
     /**
@@ -88,10 +106,36 @@ public class SwerveSubsystem extends SubsystemBase {
         );
     }
 
+
+    SwerveDrivePoseEstimator poseEstimator;
+    
     public Pose2d getPose() {
-        final Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
-        System.out.println(startPos);
-        return startPos;
+        // final Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
+
+        LimelightHelpers.SetRobotOrientation("limelight", poseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
+        LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
+        double angularVelocityDegPerSec =
+                Math.toDegrees(swerveDrive.getRobotVelocity().omegaRadiansPerSecond);
+
+        boolean doRejectUpdate = false;
+        // if our angular velocity is greater than 360 degrees per second, ignore vision updates
+        if(Math.abs(Math.abs(angularVelocityDegPerSec)) > 360)
+        {
+            doRejectUpdate = true;
+        }
+        if(mt2.tagCount == 0)
+        {
+            doRejectUpdate = true;
+        }
+        if(!doRejectUpdate)
+        {
+            poseEstimator.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
+            poseEstimator.addVisionMeasurement(
+                    mt2.pose,
+                    mt2.timestampSeconds);
+        }
+        System.out.println(poseEstimator.getEstimatedPosition());
+        return poseEstimator.getEstimatedPosition();
     }
 
     public void resetPose(Pose2d pose) {
