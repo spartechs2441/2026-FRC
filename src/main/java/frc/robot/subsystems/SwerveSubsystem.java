@@ -56,7 +56,13 @@ public class SwerveSubsystem extends SubsystemBase {
             // Handle exception as needed
             e.printStackTrace();
         }
+    }
 
+    /**
+     * Configure the autobuilder for PathPlanner.
+     * This function MUST get called <b>after</b> the registering of commands but <b>before</b> using path planner.
+     */
+    public void configureAutoBuilder() {
         AutoBuilder.configure(
                 this::getPose, // Robot pose supplier
                 this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -80,7 +86,6 @@ public class SwerveSubsystem extends SubsystemBase {
                 },
                 this // Reference to this subsystem to set requirements
         );
-
     }
 
     public Pose2d getPose() {

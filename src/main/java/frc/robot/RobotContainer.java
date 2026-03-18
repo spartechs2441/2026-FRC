@@ -60,11 +60,13 @@ public class RobotContainer {
     public RobotContainer() {
         // Configure the trigger bindings
 
-        autoChooser = AutoBuilder.buildAutoChooser();
-        SmartDashboard.putData("Auto Chooser", autoChooser);
-
         NamedCommands.registerCommand("ClimbDown", new AutoClimbDownCommand(climbSub));
         System.out.println("Finished registering named commands");
+
+        swerveSub.configureAutoBuilder();
+
+        autoChooser = AutoBuilder.buildAutoChooser();
+        SmartDashboard.putData("Auto Chooser", autoChooser);
 
         configureBindings();
         swerveSub.setDefaultCommand(driveFieldOrientedAngularVelocity);
