@@ -72,6 +72,7 @@ public final class Constants {
         //Key bindings haven't assigned yet
         public static final int ShooterShoot = XboxController.Button.kB.value;
 
+        public static final int TareButton = XboxController.Button.kStart.value;
         public static final int IndexerLoad = XboxController.Button.kY.value;
         public static final int IndexerOut = 90;
 

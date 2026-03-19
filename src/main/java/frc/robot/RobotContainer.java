@@ -98,6 +98,8 @@ public class RobotContainer {
         new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
                 .onTrue(new IndexerUnload(indexSub))
                 .onFalse(new IndexerStop(indexSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.TareButton)
+                .onTrue(new TareCommand(swerveSub));
 
 
 
