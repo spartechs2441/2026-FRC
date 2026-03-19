@@ -46,8 +46,6 @@ public class HubAlignCommand extends Command {
         Pose3d pose = fid.getTargetPose_RobotSpace();
         double x = pose.getX();
 
-        System.out.println(x);
-
         final double turnTolerance = 0.3;
         final double turnSpeed = 0.1;
         // in radians
@@ -68,8 +66,6 @@ public class HubAlignCommand extends Command {
         final double distanceTolerance = 1;
         final double moveSpeed = 1;
         double distance = pose.getTranslation().getDistance(new Translation3d());
-
-        System.out.println(distance);
 
         double move;
         if (distance < targetDistance - distanceTolerance) {
