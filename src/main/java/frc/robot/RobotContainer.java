@@ -49,8 +49,8 @@ public class RobotContainer {
             .withControllerRotationAxis(
                     () -> driverController.getLeftTriggerAxis() - driverController.getRightTriggerAxis()
             ) // Axis which give the desired angular velocity.
-            .deadband(0.01)                  // Controller deadband
-            .scaleTranslation(0.8)           // Scaled controller translation axis
+            .deadband(0.01)                // Controller deadband
+            .scaleTranslation(1)           // Scaled controller translation axis
             .allianceRelativeControl(true);  // Alliance relative controls.
     Command driveFieldOrientedAngularVelocity = swerveSub.driveFieldOriented(driveAngularVelocity);
 
