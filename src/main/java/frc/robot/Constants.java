@@ -27,26 +27,26 @@ public final class Constants {
     }
 
     public static final class IndexerConstants {
-        public static final double LoaderVoltage = -2;
-        public static final double LoaderVoltageReverse = 2;
+        public static final double LoaderVoltage = -4;
+        public static final double LoaderVoltageReverse = 4;
         public static final int LoaderID = 21;
     }
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = -1;
-        public static final double hingeVoltageReverse = 1.5;
+        public static final double hingeVoltage = -2;
+        public static final double hingeVoltageReverse = 2;
         public static final int hingeID = 13;
 
-        public static final double rollerVoltage = -2;
-        public static final double rollerVoltageReverse = 2;
+        public static final double rollerVoltage = -4;
+        public static final double rollerVoltageReverse = 4;
         public static final int rollerID = 20;
 
     }
 
     public static final class ShooterConstants {
-        public static final double shooterVoltage = 5;
-        public static final double shooterVoltageReverse = -5;
+        public static final double shooterVoltage = 8;
+        public static final double shooterVoltageReverse = -8;
         public static final int shooterMotorControllerID = 8;
     }
 
@@ -90,6 +90,7 @@ public final class Constants {
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
         public static final int AlignMacro = 11;
+        public static final int reversedIndexer = 9;
 
     }
 }
