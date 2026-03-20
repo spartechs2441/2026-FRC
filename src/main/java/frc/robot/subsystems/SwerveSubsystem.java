@@ -109,24 +109,6 @@ public class SwerveSubsystem extends SubsystemBase {
         swerveDrive.setChassisSpeeds(speeds);/* ... set module states ... */
     }
 
-
-    /**
-     * Example command factory method.
-     *
-     * @return a command
-     */
-    public Command driveCommand(DoubleSupplier translationX, DoubleSupplier translationY, DoubleSupplier angularRotationX) {
-        return run(() -> {
-            // Make the robot move
-            swerveDrive.drive(new Translation2d(translationX.getAsDouble() * Constants.getMaxVelocity,
-                            translationY.getAsDouble() * Constants.getMaxVelocity),
-                    angularRotationX.getAsDouble() * Constants.getMaxAngularVelocity,
-                    true,
-                    false);
-        });
-    }
-
-
     /**
      * An example method querying a boolean state of the subsystem (for example, a digital sensor).
      *

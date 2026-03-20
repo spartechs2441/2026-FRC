@@ -17,8 +17,10 @@ import edu.wpi.first.wpilibj.XboxController;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static double getMaxVelocity = 4;
-    public static double getMaxAngularVelocity = 4;
+    /**
+     * This is the max speed of our robot, choose this value carefully...
+     * 4.5 is too low btw.
+     */
     public static final double maxSpeed = Units.feetToMeters(4.5);
 
     public static final class OIConstants {
