@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ClimbSubsystem extends SubsystemBase {
-    private final SparkMax winch = new SparkMax(12, SparkLowLevel.MotorType.kBrushless);
+    private final SparkMax winch = new SparkMax(Constants.ClimbConstants.winchId, SparkLowLevel.MotorType.kBrushless);
     private final RelativeEncoder climbEncoder = winch.getEncoder();
     private final DigitalInput digitalSwitch = new DigitalInput(0);
 
@@ -20,8 +20,8 @@ public class ClimbSubsystem extends SubsystemBase {
         return !digitalSwitch.get();
     }
     public void winchUp() {
-        if (climbEncoder.getPosition() < Constants.ClimbConstants.RelativeEncoder) {
-            winch.setVoltage(Constants.ClimbConstants.leftWinchVoltage);
+        if (climbEncoder.getPosition() < Constants.ClimbConstants.relativeEncoderValue) {
+            winch.setVoltage(Constants.ClimbConstants.winchVoltage);
         } else {
             winchStop();
         }
@@ -31,7 +31,7 @@ public class ClimbSubsystem extends SubsystemBase {
         if (limitSwitchDown()) {
             winchStop();
         } else {
-            winch.setVoltage(-Constants.ClimbConstants.leftWinchVoltage);
+            winch.setVoltage(-Constants.ClimbConstants.winchVoltage);
         }
     }
 

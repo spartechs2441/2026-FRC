@@ -46,8 +46,6 @@ public class SwerveSubsystem extends SubsystemBase {
      * Creates a new ExampleSubsystem.
      */
     public SwerveSubsystem() {
-
-
         try {
             Pose2d pose = new Pose2d(new Translation2d(Meter.of(1), Meter.of(4)), Rotation2d.fromDegrees(0));
             File directory = new File(Filesystem.getDeployDirectory(), "swerve/maxSwerve");
@@ -55,7 +53,6 @@ public class SwerveSubsystem extends SubsystemBase {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
 
         try {
             config = RobotConfig.fromGUISettings();

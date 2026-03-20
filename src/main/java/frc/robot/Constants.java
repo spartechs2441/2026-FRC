@@ -57,15 +57,12 @@ public final class Constants {
     }
 
     public static final class ClimbConstants {
-        public static final double leftWinchVoltage = 2;
-        public static final double leftWinchSpeed = 2;
-        public static final double leftWinchVoltageReverse = 0;
-        public static final int leftWinchID = 12;
-        public static final int RelativeEncoder = 0;
-        public static final double rightWinchVoltage = 0;
-        public static final double rightWinchSpeed = 0;
-        public static final double rightWinchVoltageReverse = 0;
-        public static final int rightWinchID = 26;
+        public static final double winchVoltage = 2;
+        public static final int winchId = 12;
+        /**
+         * The relative encoder value the winch up command will stop at
+         */
+        public static final int relativeEncoderValue = 0;
     }
 
     public static final class XboxControllerButtons {
