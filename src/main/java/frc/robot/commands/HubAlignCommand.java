@@ -16,6 +16,7 @@ public class HubAlignCommand extends Command {
 
     public HubAlignCommand(SwerveSubsystem serveSub) {
         this.swerve = serveSub;
+        addRequirements(swerve);
     }
 
 

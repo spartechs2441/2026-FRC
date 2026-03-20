@@ -16,6 +16,7 @@ public class HubMoveCommand extends Command {
 
     public HubMoveCommand(SwerveSubsystem serveSub) {
         this.swerve = serveSub;
+        addRequirements(swerve);
     }
 
     @Override
