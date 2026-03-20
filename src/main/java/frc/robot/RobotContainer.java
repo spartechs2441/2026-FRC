@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
@@ -36,9 +38,11 @@ public class RobotContainer {
     private final StorageSubsystem conveyorSub = new StorageSubsystem();
     private final SendableChooser<Command> autoChooser;
 
-    // driver controller
-    XboxController driverController = new XboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
-    Joystick flightController = new Joystick(Constants.OIConstants.FLIGHT_CONTROLLER_PORT);
+    // We use `CommandXboxController` and `CommandJoystick` to hopefully improve polling with the scheduler
+    CommandXboxController commandXboxController = new CommandXboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
+    XboxController driverController = commandXboxController.getHID();
+    CommandJoystick commandFlightstick = new CommandJoystick(Constants.OIConstants.FLIGHT_CONTROLLER_PORT);
+    Joystick flightController = commandFlightstick.getHID();
     // Replace with CommandPS4Controller or CommandJoystick if needed
     SwerveInputStream driveAngularVelocity = SwerveInputStream.of(
                     swerveSub.getSwerveDrive(),
