@@ -54,6 +54,6 @@ public class AutoClimbDownCommand extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return System.currentTimeMillis() + 1000 > start;
+        return System.currentTimeMillis()  > start + 5000;
     }
 }
