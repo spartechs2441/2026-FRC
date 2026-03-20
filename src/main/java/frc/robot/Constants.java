@@ -36,7 +36,7 @@ public final class Constants {
     }
 
     public static final class IndexerConstants {
-        public static final double loaderVoltage = 4;
+        public static final double loaderVoltage = 7;
         public static final int loaderId = 21;
     }
 
@@ -69,6 +69,7 @@ public final class Constants {
     }
 
     /// For some reason we have decided to use PascalCase/UpperCamelCase to name button controls.
+    /// MB That's on me (Henry)
     public static final class XboxControllerButtons {
         public static final int TareButton = XboxController.Button.kStart.value;
         public static final int HubAlignMacro = XboxController.Button.kY.value;
