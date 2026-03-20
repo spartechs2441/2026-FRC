@@ -34,7 +34,7 @@ public final class Constants {
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = -2;
+        public static final double hingeVoltage = -3;
         public static final double hingeVoltageReverse = 2;
         public static final int hingeID = 13;
 
