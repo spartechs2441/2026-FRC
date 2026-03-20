@@ -40,13 +40,11 @@ public class Robot extends TimedRobot {
         int hubTag = getHubTagId();
         LimelightHelpers.LimelightTarget_Fiducial fid = null;
         var results = LimelightHelpers.getLatestResults("limelight");
-        System.out.println("Fiducials count: " + results.targets_Fiducials.length);
         for (var fiducials : results.targets_Fiducials) {
             if (fiducials.fiducialID == hubTag) {
                 fid = fiducials;
             }
         }
-        System.out.println("Found" + fid);
         return fid;
     }
 
