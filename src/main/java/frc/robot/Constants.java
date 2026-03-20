@@ -58,12 +58,14 @@ public final class Constants {
 
     public static final class StorageConstants {
         public static final double conveyorVoltage = 2;
-        public static final int conveyorID = 7;
+        /// used to be 7 before we swapped the controllers at 3/20/25
+        public static final int conveyorID = 12;
     }
 
     public static final class ClimbConstants {
         public static final double winchVoltage = 4;
-        public static final int winchId = 12;
+        /// used to be 12 before we swapped the controllers at 3/20/25
+        public static final int winchId = 7;
         /// The relative encoder value the winch up command will stop at (currently unset)
         public static final int relativeEncoderValue = 0;
     }
