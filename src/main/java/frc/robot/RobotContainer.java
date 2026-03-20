@@ -103,6 +103,12 @@ public class RobotContainer {
                 .onTrue(new HubAlignCommand(swerveSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.HubMoveMacro)
                 .onTrue(new HubMoveCommand(swerveSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeIn)
+                .onTrue(new IntakeIn(intakeSub))
+                .onFalse(new IntakerRollerStop(intakeSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeOut)
+                .onTrue(new IntakerOut(intakeSub))
+                .onFalse(new IntakerRollerStop(intakeSub));
 
         new JoystickButton (flightController, Constants.FlightControllerButtons.IntakeIn)
                 .onTrue(new IntakeIn(intakeSub))

@@ -75,8 +75,8 @@ public final class Constants {
         public static final int HubMoveMacro = XboxController.Button.kB.value;
 
         //Slurp, driver 2
-//        public static final int IntakeOut = XboxController.Button.kA.value;
-//        public static final int IntakeIn = XboxController.Button.kX.value;
+        public static final int IntakeOut = XboxController.Button.kA.value;
+        public static final int IntakeIn = XboxController.Button.kX.value;
         public static final int IntakerRetract = XboxController.Button.kLeftBumper.value;
         public static final int IntakerDeploy = XboxController.Button.kRightBumper.value;
     }
