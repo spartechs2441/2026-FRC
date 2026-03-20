@@ -5,6 +5,10 @@
 
 package frc.robot;
 
+import com.revrobotics.PersistMode;
+import com.revrobotics.ResetMode;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -20,6 +24,14 @@ public class Robot extends TimedRobot {
     private Command autonomousCommand;
 
     private final RobotContainer robotContainer;
+
+    // I am dumping helper methods here cuz can
+
+    public static void invertMotor(SparkMax spark) {
+        var config = new SparkMaxConfig().inverted(true);
+        // This means: Do not override any existing parameters and don't save them
+        spark.configure(config, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+    }
 
     public static int getHubTag() {
         var optionalAlliance = DriverStation.getAlliance();

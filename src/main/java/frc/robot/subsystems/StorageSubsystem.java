@@ -13,7 +13,7 @@ public class StorageSubsystem extends SubsystemBase {
     }
 
     public void conveyorBackward() {
-        conveyor.setVoltage(-Constants.StorageConstants.conveyorVoltageReverse);
+        conveyor.setVoltage(-Constants.StorageConstants.conveyorVoltage);
     }
 
     public void conveyorStop() {

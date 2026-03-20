@@ -4,17 +4,18 @@ import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class IntakeSubsystem extends SubsystemBase {
     private final SparkMax hinge = new SparkMax(Constants.IntakeConstants.hingeID, SparkLowLevel.MotorType.kBrushless);
     private final SparkMax roller = new SparkMax(Constants.IntakeConstants.rollerID, SparkLowLevel.MotorType.kBrushless);
 
     public void hingeDown() {
-        hinge.setVoltage(Constants.IntakeConstants.hingeVoltageReverse);
+        hinge.setVoltage(Constants.IntakeConstants.hingeDownVoltage);
     }
 
     public void hingeUp() {
-        hinge.setVoltage(Constants.IntakeConstants.hingeVoltage);
+        hinge.setVoltage(Constants.IntakeConstants.hingeUpVoltage);
     }
 
     public void hingeStop() {
@@ -22,11 +23,11 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void rollerOut() {
-        roller.setVoltage(-Constants.IntakeConstants.rollerVoltageReverse);
+        roller.setVoltage(Constants.IntakeConstants.rollerOutVoltage);
     }
 
     public void rollerIn() {
-        roller.setVoltage(Constants.IntakeConstants.rollerVoltage);
+        roller.setVoltage(-Constants.IntakeConstants.rollerOutVoltage);
     }
 
     public void rollerStop() {

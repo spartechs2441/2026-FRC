@@ -15,6 +15,13 @@ import edu.wpi.first.wpilibj.XboxController;
  *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
+ *
+ * <p> Extra notes (I bet this will be completely ignored):
+ * <ol>
+ * <li>Do not have voltages be negative, instead reverse the motors in the subsystem.
+ * <li>Avoid creating voltage constants for reverse operations. If you do, you must add a bit of docs to explain.
+ * <li>Decide and be consistent on the casing of the constants (please do not use SCREAMING_SNAKE_CASE).
+ * <ol/>
  */
 public final class Constants {
     /**
@@ -29,44 +36,39 @@ public final class Constants {
     }
 
     public static final class IndexerConstants {
-        public static final double LoaderVoltage = -4;
-        public static final double LoaderVoltageReverse = 4;
-        public static final int LoaderID = 21;
+        public static final double loaderVoltage = 4;
+        public static final int loaderId = 21;
     }
 
     public static final class IntakeConstants {
 
-        public static final double hingeVoltage = -3;
-        public static final double hingeVoltageReverse = 2;
+        public static final double hingeDownVoltage = 2;
+        /// Hinge up has a different voltage than hinge down because sometimes the fuel needs to be carried up with the intake.
+        public static final double hingeUpVoltage = -3;
         public static final int hingeID = 13;
 
-        public static final double rollerVoltage = -4;
-        public static final double rollerVoltageReverse = 4;
+        public static final double rollerOutVoltage = 4;
         public static final int rollerID = 20;
-
     }
 
     public static final class ShooterConstants {
         public static final double shooterVoltage = 8;
-        public static final double shooterVoltageReverse = -8;
         public static final int shooterMotorControllerID = 8;
     }
 
     public static final class StorageConstants {
         public static final double conveyorVoltage = 2;
-        public static final double conveyorVoltageReverse = 2;
         public static final int conveyorID = 7;
     }
 
     public static final class ClimbConstants {
         public static final double winchVoltage = 2;
         public static final int winchId = 12;
-        /**
-         * The relative encoder value the winch up command will stop at
-         */
+        /// The relative encoder value the winch up command will stop at (currently unset)
         public static final int relativeEncoderValue = 0;
     }
 
+    /// For some reason we have decided to use PascalCase/UpperCamelCase to name button controls.
     public static final class XboxControllerButtons {
         public static final int TareButton = XboxController.Button.kStart.value;
         public static final int HubAlignMacro = XboxController.Button.kY.value;
@@ -86,8 +88,7 @@ public final class Constants {
         public static final int ShooterShoot = 1;
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
-        public static final int reversedIndexer = 9;
-
+        public static final int ReversedIndexer = 9;
     }
 }
 
