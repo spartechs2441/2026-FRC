@@ -69,12 +69,9 @@ public final class Constants {
     }
 
     public static final class XboxControllerButtons {
-        //Key bindings haven't assigned yet
-        public static final int ShooterShoot = XboxController.Button.kB.value;
-
         public static final int TareButton = XboxController.Button.kStart.value;
-        public static final int IndexerLoad = XboxController.Button.kY.value;
-        public static final int IndexerOut = 90;
+        public static final int HubAlignMacro = XboxController.Button.kY.value;
+        public static final int HubMoveMacro = XboxController.Button.kB.value;
 
         //Slurp, driver 2
 //        public static final int IntakeOut = XboxController.Button.kA.value;
@@ -90,7 +87,6 @@ public final class Constants {
         public static final int ShooterShoot = 1;
         public static final int ClimbUp = 6;
         public static final int Climbdown = 4;
-        public static final int AlignMacro = 11;
         public static final int reversedIndexer = 9;
 
     }

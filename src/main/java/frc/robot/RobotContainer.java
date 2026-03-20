@@ -86,9 +86,9 @@ public class RobotContainer {
         // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
         // cancelling on release.
 
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad)
-                .onTrue(new IndexerLoad(indexSub))
-                .onFalse(new IndexerStop(indexSub));
+//        new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad)
+//                .onTrue(new IndexerLoad(indexSub))
+//                .onFalse(new IndexerStop(indexSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerDeploy)
                 .onTrue(new IntakerDeploy(intakeSub))
                 .onFalse(new IntakerHingeStop(intakeSub));
@@ -100,6 +100,10 @@ public class RobotContainer {
                 .onFalse(new IndexerStop(indexSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.TareButton)
                 .onTrue(new TareCommand(swerveSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.HubAlignMacro)
+                .onTrue(new HubAlignCommand(swerveSub));
+        new JoystickButton(driverController, Constants.XboxControllerButtons.HubMoveMacro)
+                .onTrue(new HubMoveCommand(swerveSub));
 
 
 
@@ -124,8 +128,6 @@ public class RobotContainer {
         new JoystickButton(flightController, Constants.FlightControllerButtons.reversedIndexer)
                 .onTrue(new IndexerUnload(indexSub))
                 .onFalse(new IndexerStop(indexSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.AlignMacro)
-                .onTrue(new HubAlignCommand(swerveSub));
     }
 
 

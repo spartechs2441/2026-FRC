@@ -10,15 +10,14 @@ import frc.robot.Robot;
 import frc.robot.subsystems.SwerveSubsystem;
 import swervelib.SwerveDrive;
 
-public class HubAlignCommand extends Command {
+public class HubMoveCommand extends Command {
     private final SwerveSubsystem swerve;
     private int aprilTag;
     private boolean done = false;
 
-    public HubAlignCommand(SwerveSubsystem serveSub) {
+    public HubMoveCommand(SwerveSubsystem serveSub) {
         this.swerve = serveSub;
     }
-
 
     @Override
     public void initialize() {
@@ -29,32 +28,31 @@ public class HubAlignCommand extends Command {
     public void execute() {
         LimelightHelpers.LimelightTarget_Fiducial fid = null;
         var results = LimelightHelpers.getLatestResults("limelight");
-        System.out.println("Fiducials count: " + results.targets_Fiducials.length);
         for (var fiducials : results.targets_Fiducials) {
             if (fiducials.fiducialID == aprilTag) {
                 fid = fiducials;
             }
         }
-        System.out.println("Found" + fid);
         if (fid == null) return;
         SwerveDrive drive = swerve.getSwerveDrive();
         Pose3d pose = fid.getTargetPose_RobotSpace();
-        double x = pose.getX();
 
-        final double turnTolerance = 0.3;
-        final double turnSpeed = 0.1;
-        // in radians
-        double turn;
-        if (x > turnTolerance) {
-            turn = -turnSpeed;
-        } else if (x > -turnTolerance) {
-            turn = turnSpeed;
+        final double targetDistance = 10;
+        final double distanceTolerance = 1;
+        final double moveSpeed = 1;
+        double distance = pose.getTranslation().getDistance(new Translation3d());
+
+        double move;
+        if (distance < targetDistance - distanceTolerance) {
+            move = -moveSpeed;
+        } else if (distance > targetDistance + distanceTolerance) {
+            move = moveSpeed;
         } else {
-            turn = 0;
+            move = 0;
             done = true;
         }
-        System.out.println("Turn: " + turn);
-        drive.drive(new ChassisSpeeds(0, 0, turn));
+        System.out.println("Move: " + move);
+        drive.drive(new ChassisSpeeds(move, 0, 0));
     }
 
     @Override
