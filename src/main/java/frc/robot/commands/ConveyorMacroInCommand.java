@@ -20,7 +20,6 @@ public class ConveyorMacroInCommand extends Command {
     public ConveyorMacroInCommand(StorageSubsystem storageSub, IndexerSubsystem indexerSub) {
         this.storage = storageSub;
         this.indexer = indexerSub;
-        // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(storageSub, indexerSub);
     }
 
@@ -36,7 +35,7 @@ public class ConveyorMacroInCommand extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        storage.conveyorBackward();
+        storage.conveyorIn();
         indexer.loaderIn();
     }
 

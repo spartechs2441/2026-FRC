@@ -6,26 +6,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.StorageSubsystem;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ConveyorOutCommand extends Command {
+public class ConveyorMacroOutCommand extends Command {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final StorageSubsystem subsystem;
+    private final StorageSubsystem storage;
+    private final IndexerSubsystem indexer;
 
-
-    /**
-     * Creates a new ExampleCommand.
-     *
-     * @param subsystem The subsystem used by this command.
-     */
-    public ConveyorOutCommand(StorageSubsystem subsystem) {
-        this.subsystem = subsystem;
-        // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(subsystem);
-
+    public ConveyorMacroOutCommand(StorageSubsystem storageSub, IndexerSubsystem indexerSub) {
+        this.storage = storageSub;
+        this.indexer = indexerSub;
+        addRequirements(storageSub, indexerSub);
     }
 
 
@@ -40,7 +35,8 @@ public class ConveyorOutCommand extends Command {
     // Sort of a loop
     @Override
     public void execute() {
-        subsystem.conveyorForward();
+        storage.conveyorOut();
+        indexer.loaderOut();
     }
 
 

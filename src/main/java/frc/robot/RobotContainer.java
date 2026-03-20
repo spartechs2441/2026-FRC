@@ -104,8 +104,6 @@ public class RobotContainer {
         new JoystickButton(driverController, Constants.XboxControllerButtons.HubMoveMacro)
                 .onTrue(new HubMoveCommand(swerveSub));
 
-
-
         new JoystickButton (flightController, Constants.FlightControllerButtons.IntakeIn)
                 .onTrue(new IntakeIn(intakeSub))
                 .onFalse(new IntakerRollerStop(intakeSub));
@@ -120,6 +118,9 @@ public class RobotContainer {
                 .onFalse(new ClimbStopCommand(climbSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorInMacro)
                 .onTrue(new ConveyorMacroInCommand(conveyorSub, indexSub))
+                .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
+        new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorOutMacro)
+                .onTrue(new ConveyorMacroOutCommand(conveyorSub, indexSub))
                 .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
                 .onTrue(new ShooterShoot(shooterSub))

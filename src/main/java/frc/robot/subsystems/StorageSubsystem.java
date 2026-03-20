@@ -8,11 +8,13 @@ import frc.robot.Constants;
 public class StorageSubsystem extends SubsystemBase {
     private final SparkMax conveyor = new SparkMax(Constants.StorageConstants.conveyorID, SparkLowLevel.MotorType.kBrushless);
 
-    public void conveyorForward() {
+    /// Going into the shooter
+    public void conveyorOut() {
         conveyor.setVoltage(Constants.StorageConstants.conveyorVoltage);
     }
 
-    public void conveyorBackward() {
+    /// Going out of the shooter
+    public void conveyorIn() {
         conveyor.setVoltage(-Constants.StorageConstants.conveyorVoltage);
     }
 
