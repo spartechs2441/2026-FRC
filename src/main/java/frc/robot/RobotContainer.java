@@ -95,9 +95,9 @@ public class RobotContainer {
         new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract)
                 .onTrue(new IntakerRetract(intakeSub))
                 .onFalse(new IntakerHingeStop(intakeSub));
-        new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
-                .onTrue(new IndexerUnload(indexSub))
-                .onFalse(new IndexerStop(indexSub));
+//        new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
+//                .onTrue(new IndexerUnload(indexSub))
+//                .onFalse(new IndexerStop(indexSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.TareButton)
                 .onTrue(new TareCommand(swerveSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.HubAlignMacro)
