@@ -63,17 +63,6 @@ public class SwerveSubsystem extends SubsystemBase {
             // Handle exception as needed
             e.printStackTrace();
         }
-        poseEstimator = new SwerveDrivePoseEstimator(
-                swerveDrive.kinematics,
-
-                swerveDrive.getGyro().getRawRotation3d().toRotation2d(),
-                swerveDrive.getModulePositions(),
-                new Pose2d(),
-                // State standard deviations (x, y, theta)
-                VecBuilder.fill(0.1, 0.1, 0.1),
-                // Vision measurement standard deviations
-                VecBuilder.fill(0.9, 0.9, 0.9)
-        );
     }
 
     /**
@@ -107,35 +96,8 @@ public class SwerveSubsystem extends SubsystemBase {
     }
 
 
-    SwerveDrivePoseEstimator poseEstimator;
-    
     public Pose2d getPose() {
-        // final Pose2d startPos = LimelightHelpers.getBotPose2d("limelight");
-
-        LimelightHelpers.SetRobotOrientation("limelight", poseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
-        LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
-        double angularVelocityDegPerSec =
-                Math.toDegrees(swerveDrive.getRobotVelocity().omegaRadiansPerSecond);
-
-        boolean doRejectUpdate = false;
-        // if our angular velocity is greater than 360 degrees per second, ignore vision updates
-        if(Math.abs(Math.abs(angularVelocityDegPerSec)) > 360)
-        {
-            doRejectUpdate = true;
-        }
-        if(mt2.tagCount == 0)
-        {
-            doRejectUpdate = true;
-        }
-        if(!doRejectUpdate)
-        {
-            poseEstimator.setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
-            poseEstimator.addVisionMeasurement(
-                    mt2.pose,
-                    mt2.timestampSeconds);
-        }
-        System.out.println(poseEstimator.getEstimatedPosition());
-        return poseEstimator.getEstimatedPosition();
+        return swerveDrive.getPose();
     }
 
     public void resetPose(Pose2d pose) {
