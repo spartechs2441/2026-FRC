@@ -12,7 +12,6 @@ import swervelib.SwerveDrive;
 
 public class HubAlignCommand extends Command {
     private final SwerveSubsystem swerve;
-    private int aprilTag;
     private boolean done = false;
 
     public HubAlignCommand(SwerveSubsystem serveSub) {
@@ -21,21 +20,8 @@ public class HubAlignCommand extends Command {
 
 
     @Override
-    public void initialize() {
-        aprilTag = Robot.getHubTag();
-    }
-
-    @Override
     public void execute() {
-        LimelightHelpers.LimelightTarget_Fiducial fid = null;
-        var results = LimelightHelpers.getLatestResults("limelight");
-        System.out.println("Fiducials count: " + results.targets_Fiducials.length);
-        for (var fiducials : results.targets_Fiducials) {
-            if (fiducials.fiducialID == aprilTag) {
-                fid = fiducials;
-            }
-        }
-        System.out.println("Found" + fid);
+        var fid = Robot.getHubTag();
         if (fid == null) return;
         SwerveDrive drive = swerve.getSwerveDrive();
         Pose3d pose = fid.getTargetPose_RobotSpace();

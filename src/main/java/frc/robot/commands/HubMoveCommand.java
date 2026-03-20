@@ -12,7 +12,6 @@ import swervelib.SwerveDrive;
 
 public class HubMoveCommand extends Command {
     private final SwerveSubsystem swerve;
-    private int aprilTag;
     private boolean done = false;
 
     public HubMoveCommand(SwerveSubsystem serveSub) {
@@ -20,19 +19,8 @@ public class HubMoveCommand extends Command {
     }
 
     @Override
-    public void initialize() {
-        aprilTag = Robot.getHubTag();
-    }
-
-    @Override
     public void execute() {
-        LimelightHelpers.LimelightTarget_Fiducial fid = null;
-        var results = LimelightHelpers.getLatestResults("limelight");
-        for (var fiducials : results.targets_Fiducials) {
-            if (fiducials.fiducialID == aprilTag) {
-                fid = fiducials;
-            }
-        }
+        var fid = Robot.getHubTag();
         if (fid == null) return;
         SwerveDrive drive = swerve.getSwerveDrive();
         Pose3d pose = fid.getTargetPose_RobotSpace();

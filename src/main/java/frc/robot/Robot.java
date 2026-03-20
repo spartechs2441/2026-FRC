@@ -9,8 +9,10 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -33,18 +35,40 @@ public class Robot extends TimedRobot {
         spark.configure(config, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
     }
 
-    public static int getHubTag() {
+    ///  @return may be null
+    public static LimelightHelpers.LimelightTarget_Fiducial getHubTag() {
+        int hubTag = getHubTagId();
+        LimelightHelpers.LimelightTarget_Fiducial fid = null;
+        var results = LimelightHelpers.getLatestResults("limelight");
+        System.out.println("Fiducials count: " + results.targets_Fiducials.length);
+        for (var fiducials : results.targets_Fiducials) {
+            if (fiducials.fiducialID == hubTag) {
+                fid = fiducials;
+            }
+        }
+        System.out.println("Found" + fid);
+        return fid;
+    }
+
+    /// We are assuming that we do not change teams mid-match
+    private static int hubTag = -1;
+    public static int getHubTagId() {
+        if (hubTag != -1) {
+            return hubTag;
+        }
         var optionalAlliance = DriverStation.getAlliance();
         if (optionalAlliance.isPresent()) {
             DriverStation.Alliance alliance = optionalAlliance.get();
             if (alliance == DriverStation.Alliance.Blue) {
-                return 26;
+                hubTag = 26;
             } else {
-                return 10;
+                hubTag = 10;
             }
         } else {
-            return 26;
+            System.out.println("Warning: No alliance present");
+            hubTag = 26;
         }
+        return hubTag;
     }
 
     /**
@@ -72,6 +96,21 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
+
+        // Run the distance checker to update the dashboard's distance
+        var fid = Robot.getHubTag();
+        String distance;
+        if (fid != null) {
+            distance = String.valueOf(
+                    fid
+                        .getTargetPose_RobotSpace()
+                        .getTranslation()
+                        .getDistance(new Translation3d())
+            );
+        } else {
+            distance = "None";
+        }
+        SmartDashboard.putString("Hub Distance", distance);
     }
 
 
