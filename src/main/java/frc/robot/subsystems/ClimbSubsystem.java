@@ -20,11 +20,8 @@ public class ClimbSubsystem extends SubsystemBase {
         return !digitalSwitch.get();
     }
     public void winchUp() {
-        if (climbEncoder.getPosition() < Constants.ClimbConstants.relativeEncoderValue) {
-            winch.setVoltage(Constants.ClimbConstants.winchVoltage);
-        } else {
-            winchStop();
-        }
+        winch.setVoltage(Constants.ClimbConstants.winchVoltage);
+
     }
 
     public void winchDown() {
