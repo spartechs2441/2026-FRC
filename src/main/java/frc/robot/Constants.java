@@ -47,7 +47,7 @@ public final class Constants {
         public static final double hingeUpVoltage = -3;
         public static final int hingeID = 13;
 
-        public static final double rollerOutVoltage = 4;
+        public static final double rollerOutVoltage = 7;
         public static final int rollerID = 20;
     }
 
