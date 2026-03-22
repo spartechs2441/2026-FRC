@@ -28,7 +28,7 @@ public final class Constants {
      * This is the max speed of our robot, choose this value carefully...
      * 4.5 is too low btw.
      */
-    public static final double maxSpeed = Units.feetToMeters(6.7);
+    public static final double maxSpeed = Units.feetToMeters(20);
 
     public static final class OIConstants {
         public static final int DRIVER_CONTROLLER_PORT = 0;
