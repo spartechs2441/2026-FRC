@@ -82,62 +82,15 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-        // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-        new Trigger(swerveSub::exampleCondition)
-                .onTrue(new ExampleCommand(swerveSub));
-
-        // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-        // cancelling on release.
-
-//        new JoystickButton(driverController, Constants.XboxControllerButtons.IndexerLoad)
-//                .onTrue(new IndexerLoad(indexSub))
-//                .onFalse(new IndexerStop(indexSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerDeploy)
-                .onTrue(new IntakerDeploy(intakeSub))
-                .onFalse(new IntakerHingeStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakerRetract)
-                .onTrue(new IntakerRetract(intakeSub))
-                .onFalse(new IntakerHingeStop(intakeSub));
-//        new POVButton(driverController, Constants.XboxControllerButtons.IndexerOut)
-//                .onTrue(new IndexerUnload(indexSub))
-//                .onFalse(new IndexerStop(indexSub));
         new JoystickButton(driverController, Constants.XboxControllerButtons.TareButton)
                 .onTrue(new TareCommand(swerveSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.HubAlignMacro)
-                .onTrue(new HubAlignCommand(swerveSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.HubMoveMacro)
-                .onTrue(new HubMoveCommand(swerveSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeIn)
-                .onTrue(new IntakeIn(intakeSub))
-                .onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(driverController, Constants.XboxControllerButtons.IntakeOut)
-                .onTrue(new IntakerOut(intakeSub))
-                .onFalse(new IntakerRollerStop(intakeSub));
 
-        new JoystickButton (flightController, Constants.FlightControllerButtons.IntakeIn)
-                .onTrue(new IntakeIn(intakeSub))
-                .onFalse(new IntakerRollerStop(intakeSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.IntakeOut)
-                .onTrue(new IntakerOut(intakeSub))
-                .onFalse(new IntakerRollerStop(intakeSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.Climbdown)
                 .onTrue(new ClimbDownCommand(climbSub))
                 .onFalse(new ClimbStopCommand(climbSub));
         new JoystickButton(flightController, Constants.FlightControllerButtons.ClimbUp)
                 .onTrue(new ClimbUpCommand(climbSub))
                 .onFalse(new ClimbStopCommand(climbSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorInMacro)
-                .onTrue(new ConveyorMacroInCommand(conveyorSub, indexSub))
-                .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.ConveyorOutMacro)
-                .onTrue(new ConveyorMacroOutCommand(conveyorSub, indexSub))
-                .onFalse(new ConveyorMacroStopCommand(conveyorSub, indexSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.ShooterShoot)
-                .onTrue(new ShooterShoot(shooterSub))
-                .onFalse(new ShooterStop(shooterSub));
-        new JoystickButton(flightController, Constants.FlightControllerButtons.ReversedIndexer)
-                .onTrue(new IndexerUnload(indexSub))
-                .onFalse(new IndexerStop(indexSub));
     }
 
 
