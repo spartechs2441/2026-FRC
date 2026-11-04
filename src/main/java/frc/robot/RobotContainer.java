@@ -40,7 +40,7 @@ public class RobotContainer {
     //private final SendableChooser<Command> autoChooser;
 
     // We use `CommandXboxController` and `CommandJoystick` to hopefully improve polling with the scheduler
-    CommandXboxController commandXboxController = new CommandXboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
+   CommandXboxController commandXboxController = new CommandXboxController(Constants.OIConstants.DRIVER_CONTROLLER_PORT);
     XboxController driverController = commandXboxController.getHID();
    // CommandJoystick commandFlightstick = new CommandJoystick(Constants.OIConstants.FLIGHT_CONTROLLER_PORT);
    // Joystick flightController = commandFlightstick.getHID();
@@ -158,7 +158,7 @@ public class RobotContainer {
         // An example command will be run in autonomous
         //return ShootAutoCommand.getCommand(shooterSub, indexSub);
         return Commands.run(
-                () -> swerveSub.driveFieldOriented(new ChassisSpeeds(1.0,0.0,0.0)),
+                () -> swerveSub.driveFieldOriented(new ChassisSpeeds(1.0,1.0,0.0)),
                         swerveSub
         ).withTimeout(3.0);
     }
